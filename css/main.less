@@ -1,0 +1,1343 @@
+.main{
+    padding-top: 60px;
+    .title{
+        text-align: center;
+        font-size: 40px;
+        font-weight: bold;
+        color: #041421;
+        height: 120px;
+        line-height: 120px;
+    }
+    .five-wrap{
+        border: 1px solid #ccc;
+        margin-bottom: 60px;
+        // 上面标题和list
+        .caption{
+            padding: 20px 30px 16px;
+            border-bottom: 1px solid #ccc;
+            overflow: hidden;
+            .left-box{
+                float: left;
+                overflow: hidden;
+                .caption-title{
+                    font-size: 22px;
+                    font-weight: bold;
+                    letter-spacing: .05em;
+                    line-height: 22px;
+                    color: #36434d;
+                }
+                .caption-desc{
+                    margin-top: 10px;
+                    letter-spacing: .02em;
+                    font-size: 16px;
+                    line-height: 16px;
+                    a{
+                        display: inline-block;
+                        border-bottom: 1px solid #ee8523;
+                        color: #ee8523;
+                    }
+                }
+            }
+            .right-box{
+                height: 60px;
+                float: right;
+                width: 488px;
+                overflow: hidden;
+                &:after {
+                    content: ".";
+                    height: 0;
+                    visibility: hidden;
+                    display: block;
+                    clear: both
+                }
+                .stepbar{
+                    position: absolute;
+                    display: table;
+                    table-layout: fixed;
+                    width: 490px;
+                    background: #27AEC2;
+                    height: 10px;
+                    margin-top: 10px;
+                    li{
+                        width: 100%;
+                        position: relative;
+                        display: table-cell;
+                        top: 20px;
+                        text-align: center;
+                        color: #999;
+                        font-size: 14px;
+                        line-height: 10px;
+                        cursor: pointer;
+                        margin-right:2px;
+                        border-right: 2px solid #fff;
+                        &:after {
+                               position: absolute;
+                                top: -20px;
+                                display: block;
+                                width: 100%;
+                                height: 100%;
+                                background-color: #ccc;
+                                border-right: 2px solid #fff;
+                                content: " ";
+                                font-size: 14px;
+                                z-index: 1;
+                                height: 10px;
+                                color: #999;
+                        }
+                    }
+                    .completed{
+                        color: #333;
+                        &:after {
+                            background-color: #27AEC2;
+                        }
+                    }
+                    .current{
+                        color: #333;
+                        font-weight: bold;
+                        font-family: inherit;
+                    }
+                   
+                }
+            }
+
+        }
+        // 预听原文
+        .content{
+            display: block;
+            padding: 30px 30px 0;
+            overflow: hidden;
+            // 音频
+            .content-tips{
+                border: 1px dashed #ccc;
+                padding-bottom: 27px;
+                padding-top: 27px;
+                margin-bottom: 30px;
+                p{
+                    font-size: 16px;
+                    line-height: 24px;
+                    text-align: center;
+                }
+            }
+            .prototype-wrapper{
+                padding-top: 30px;
+                position: relative;
+                .jp_container_1-box{
+                    position: absolute;
+                    left: 500px;
+                    top: 290px;
+                    z-index: 999;
+                    line-height: 12px;
+                    .jp_container_1 div{
+                        display: inline-block;
+                        font-size: 12px;
+                        color: #3a4c5a;
+                    }
+                }
+                .play-progress{
+                    width: 240px;
+                    height: 240px;
+                    border-radius: 50%;
+                    position: relative;
+                    top: 3px;
+                    left: 50%;
+                    margin-left: -120px;
+                    z-index: 1;
+                    background-color: transparent;
+                    .play-shader{
+                        width: 230px;
+                        height: 230px;
+                        left: 5px;
+                        top: 5px;
+                        border-radius: 50%;
+                        background-color: #fff;
+                        z-index: 2;
+                        position: absolute;
+                    }
+                    .playinghorn{
+                        width: 210px;
+                        height: 210px;
+                        border-radius: 50%;
+                        position: absolute;
+                        z-index: 14;
+                        left: 15px;
+                        top: 16px;
+                        cursor: default;
+                        background: url(../images/Listening5Step.png) no-repeat;
+                        background-position: 5px -680px;
+                    }
+                }
+            }
+            // 下一步按钮
+            .step-btns{
+                display: block;
+                position: relative;
+                overflow: hidden;
+                text-align: center;
+                margin-bottom: 60px;
+                margin-top: 102px;
+                .btn{
+                    display: inline-block;
+                    width: 200px;
+                    height: 40px;
+                    border-radius: 4px;
+                    background: #CCCCCC;
+                    color: #fff;
+                    line-height: 40px;
+                    font-size: 16px;
+                    outline: 0;
+                    cursor: pointer;
+                }
+                .btn-ok{
+                    background-color: #ee8523;
+                }
+            }
+        }
+        // 记录生词
+        .new-word-con{
+            display: block;
+            overflow: hidden;
+             // 记录生词
+             .record-left , .record-right{
+                display: table-cell;
+                width: 50%;
+                padding: 30px;
+                height: 100%;
+                vertical-align: top;
+            }
+            .record-left{
+                border-right: 1px solid #ccc;
+                .record-title {
+                    font-size: 20px;
+                    color: #36434d;
+                    font-weight: bold;
+                    padding-top: 30px;
+                    padding-bottom: 25px;
+                    line-height: 20px;
+                    text-align: left;
+                }
+                .record-text{
+                    font-size: 16px;
+                    line-height: 26px;
+                    color: #36434d;
+                    word-break: normal;
+                }
+            }
+            .record-right{
+                text-align: center;
+                padding-top: 60px;
+                input[type="text"], input[type="password"] {
+                    line-height: normal;
+                }
+                #wordlist{
+                    width: 509px;
+                    overflow-x: hidden;
+                    overflow-y: scroll;
+                    height: 626px;
+                    border: 1px solid #ccc;
+                    .gradient{
+                        background: -webkit-linear-gradient(45deg,#fc9c43,#eb6c06);
+                        background: -o-linear-gradient(45deg,#fc9c43,#eb6c06);
+                        color: #fff;
+                    }
+                    .listTitle{
+                        height: 52px;
+                        color: #fff;
+                        font-weight: bold;
+                        line-height: 52px;
+                        div{
+                            height: 100%;
+                            float: left;
+                            &:nth-child(1) {
+                                width: 26%;
+                                text-align: left;
+                                padding-left: 20px;
+                            }
+                            &:nth-child(2) {
+                                text-align: left;
+                                width: 45%;
+                            }
+                            &:nth-child(3) {
+                                width: 20%;
+                                cursor: pointer;
+                                padding-right: 20px;
+                                text-align: right;
+                                i{
+                                    width: 22px;
+                                    height: 20px;
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                    background-image: url(../images/wordlist.png);
+                                    background-size: 60px 200px;
+                                    background-position: left -140px;
+                                }
+                            }
+                        }
+                    }
+                    .wordlistBody{
+                        position: relative;
+                        height: 572px;
+                        overflow: auto;
+                        // 无内容时
+                        .noWord{
+                            display: none;
+                            left: 0;
+                            right: 0;
+                            top: 50%;
+                            position: absolute;
+                            height: 118px;
+                            margin-top: -59px;
+                            font-size: 20px;
+                            color: #ccc;
+                            text-align: center;
+                            .addIcon{
+                                width: 60px;
+                                height: 50px;
+                                background-image: url(../images/wordlist.png);
+                                background-position: center top;
+                                margin: 0 auto;
+                                padding-bottom: 30px;
+                            }
+                        }
+                        // 有内容时
+                        .wordNote{
+                            overflow: hidden;
+                            li{
+                                height: 52px;
+                                width: 100%;
+                                font-size: 16px;
+                                overflow: hidden;
+                                .listElement{
+                                    float: left;
+                                    text-align: left;
+                                    color: #666;
+                                    border-bottom: 1px solid #ccc;
+                                    height: 100%;
+                                    line-height: 52px;
+                                    overflow: hidden;
+                                    white-space: nowrap;
+                                    text-overflow: ellipsis;
+                                    cursor: pointer;
+                                    &:nth-child(1){
+                                        width: 26%;
+                                        padding-left: 20px;
+                                    }
+                                    &:nth-child(2){
+                                        width: 45%;
+                                    }
+                                    &:nth-child(3){
+                                        width: 20%;
+                                        text-align: right;
+                                        color: #333;
+                                    }
+                                    lable{
+                                        cursor: pointer;
+                                        display: inline-block;
+                                        max-width: 100%;
+                                        margin-bottom: 5px;
+                                        
+                                    }
+                                    i{
+                                        display: inline-block;
+                                        width: 0;
+                                        height: 16px;
+                                        border-left: 1px solid #ccc;
+                                        vertical-align: middle;
+                                    }
+                                }
+                               &:nth-child(2n) {
+                                background: #f5f5f5;
+                            }
+                            }
+                        }
+                        // 弹出层
+                        .wrapper_wordlist{
+                            z-index: 100;
+                            background: #fff;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%,-50%);
+                            display: none;
+                            .titleBar{
+                                background: -webkit-linear-gradient(45deg,#fc9c43,#eb6c06);
+                                color:  #fff;
+                                height: 40px;
+                                text-align: center;
+                                line-height: 40px;
+                                .m-act-del{
+                                    right: 10px;
+                                    top: 10px;
+                                    position: absolute;
+                                    display: inline-block;
+                                    width: 20px;
+                                    height: 20px;
+                                    overflow: hidden;
+                                    cursor: pointer;
+                                    &::after,&::before{
+                                        content: '';
+                                        position: absolute;
+                                        height: 2px;
+                                        width: 70%;
+                                        top: 50%;
+                                        left: 3px;
+                                        margin-top: -1px;
+                                        background: #fff;
+                                    }
+                                    &::before{
+                                        transform: rotate(45deg);
+                                    }
+                                    &::after{
+                                        transform: rotate(-45deg);
+                                    }
+                                    
+                                }
+                            }
+                            .hide-element{
+                                display: none;
+                            }
+                            .dialog{
+                                padding: 30px 20px;
+                                font-size: 18px;
+                                background-color: #fff;
+                                // 添加
+                                .wordAdding{
+                                    padding-bottom: 30px;
+                                    width: 100%;
+                                }
+                                .modal_label{
+                                    text-align: left;
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    padding-bottom: 10px;
+                                    line-height: 14px;
+                                }
+                                .wordlistInp{
+                                    width: 350px;
+                                    height: 40px;
+                                    border: 1px solid #ccc;
+                                    background: #f5f5f5;
+                                    padding-left: 10px;
+                                }
+                                .wordlistTextarea{
+                                    background: #f5f5f5;
+                                    border: 1px solid #ccc;
+                                    height: 140px;
+                                    width: 340px;
+                                    resize: none;
+                                    padding: 10px;
+                                }
+                                .wordlist-oper{
+                                    padding-top: 10px;
+                                    text-align: center;
+                                    .btn-wordlist{
+                                        width: 70px;
+                                        height: 30px;
+                                        font-size: 14px;
+                                        line-height: 30px;
+                                        padding: 0;
+                                        background: #ee8523;
+                                        border-radius: 4px;
+                                        color: #fff;
+                                        border: none;
+                                    }
+                                    .confirm-wordlist{
+                                        margin-right: 30px;
+                                    }
+                                }
+                                // 删除
+                                .delTip{
+                                    padding-bottom: 50px;
+                                    text-align: center;
+                                }
+                                // 编辑
+    
+                            }
+                        }
+                        // 遮罩
+                        .worlist_shadow {
+                            background: rgba(0,0,0,.3);
+                            position: fixed;
+                            width: 100%;
+                            height: 100%;
+                            top: 0;
+                            left: 0;
+                            display: none;
+                        }
+                    }
+                }
+                .step-btns{
+                    margin-top: 60px;
+                    display: block;
+                    position: relative;
+                    overflow: hidden;
+                    text-align: center;
+                    margin-bottom: 30px;
+                    .btn{
+                        display: inline-block;
+                        width: 200px;
+                        height: 40px;
+                        padding: 0;
+                        border: none;
+                        border-radius: 4px;
+                        background: #ccc;
+                        color: #fff;
+                        line-height: 40px;
+                        font-size: 16px;
+                        outline: 0;
+                        -webkit-touch-callout: none;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                    }
+                    .btn-ok{
+                        background-color: #ee8523;
+                    }
+                }
+            }
+        }
+
+        // 翻译原文
+        .translation-content{
+            padding: 30px;
+            .translation-tips{
+                margin-bottom: 25px;
+                border: 1px dashed #ccc;
+                width: 100%;
+                height: 80px;
+                line-height: 80px;
+                text-align: center;
+            }
+            .translation-step{
+                overflow: hidden;
+                p{
+                    position: relative;
+                    padding-left: 25px;
+                    font-size: 16px;
+                    color: #36434d;
+                    line-height: 26px;
+                    &::before{
+                        display: inline-block;
+                        content: " ";
+                        position: absolute;
+                        width: 15px;
+                        height: 15px;
+                        background: #ccc;
+                        margin-right: 10px;
+                        left: 0;
+                        top: 4px;
+                    }
+                }
+                .textarea{
+                    overflow-y: auto;
+                    resize: none;
+                    height: 100px;
+                    overflow-x: hidden;
+                    width: 1035px;
+                    padding: 14px 20px;
+                    margin-top: 15px;
+                    font-size: 16px;
+                    color: #36434d;
+                    line-height: 30px;
+                    border: 1px solid #ccc;
+                    background-color: #fff;
+                }
+                .noAllowed{
+                    cursor: not-allowed;
+                    background-color: #eee;
+                }
+                .translation-answer{
+                    display: none;
+                    h2{
+                        font-size: 16px;
+                        line-height: 20px;
+                        padding-top: 16px;
+                        font-weight: bold;
+                    }
+                    p{
+                        font-size: 16px;
+                        line-height: 30px;
+                        padding-top: 2px;
+                        padding-bottom: 18px;
+                    }
+                }
+            }
+            
+        }
+        // 跟读训练
+        .content-step {
+            padding: 30px;
+            .training-tips{
+                border: 1px dashed #ccc;
+                padding-bottom: 27px;
+                padding-top: 27px;
+                margin-bottom: 30px;
+                p{
+                    font-size: 16px;
+                    line-height: 24px;
+                    text-align: center;
+                    .quest-smark{
+                        cursor: default;
+                        display: inline-block;
+                        background: url(../images/Listening5Step.png) no-repeat;
+                        background-position: 0 -500px;
+                        width: 18px;
+                        height: 15px;
+                        border: none;
+                        vertical-align: middle;
+                    }
+                }
+            }    
+            // 按钮样式
+            .step-answer, .step-btns{
+                margin-top: 60px;
+                margin-bottom: 30px;
+                .btn{
+                    display: block;
+                    width: 200px;
+                    height: 40px;
+                    padding: 0;
+                    border: none;
+                    border-radius: 4px;
+                    background: #ccc;
+                    color: #fff;
+                    line-height: 40px;
+                    font-size: 16px;
+                    outline: 0;
+                    text-align: center;
+                    margin: 0 auto;
+                    -webkit-touch-callout: none;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+                .btn-ok{
+                    background-color: #ee8523;
+                }
+            }
+            // 第一部分
+            .training-tag{
+                .training-step{
+                    font-size: 16px;
+                    color: #36434d;
+                    line-height: 26px;
+                    padding-top: 25px;
+                    span{
+                        position: relative;
+                    }
+                    &>p{
+                        position: relative;
+                        padding-left: 25px;
+                        font-size: 16px;
+                        color: #36434d;
+                        line-height: 26px;
+                        &::before{
+                            display: inline-block;
+                            content: " ";
+                            position: absolute;
+                            width: 15px;
+                            height: 15px;
+                            background: #ccc;
+                            margin-right: 10px;
+                            left: 0;
+                            top: 4px;
+                        }
+                        i{
+                            display: inline-block;
+                            background: url(../images/Listening5Step.png) no-repeat;
+                            background-position: 0 -500px;
+                            width: 18px;
+                            height: 15px;
+                            border: none;
+                            vertical-align: middle;
+                        }
+                        .red{
+                            color:#ffac00;
+
+                        }
+                    }
+                    .training-answer{
+                        padding-bottom: 25px;
+                        border-bottom: 1px solid #ccc;
+                        padding-left: 25px;
+                        // display: none;
+                        .training-title{
+                            padding: 15px 0 4px 0;
+                            font-size: 16px;
+                            line-height: 20px;
+                            font-weight: bold;
+                        }
+                        .training-already .red{
+                            color:#ffac00;
+
+                        }
+                        // 符号效果
+                        .connect i{
+                                background:  url(../images/Listening5Step.png) no-repeat;
+                                background-position: 1px -530px;
+                                position: absolute;
+                                width: 20px;
+                                height: 10px;
+                                left: -7px;
+                                top: 18px;
+                                display: inline-block;
+                                vertical-align: middle;
+                        }
+                        .leftline{
+                            &::after{
+                                display: block;
+                                content: " ";
+                                font-size: 16px;
+                                position: absolute;
+                                width: 1px;
+                                height: 16px;
+                                border: 1px solid #ffac00;
+                                left: 2px;
+                                top: 0;
+                                -webkit-transform: rotate(-20deg);
+                                -moz-transform: rotate(-20deg);
+                                -ms-transform: rotate(-20deg);
+                                -o-transform: rotate(-20deg);
+                                transform: rotate(-20deg);
+                            }
+                        }
+                        .tag-j{
+                            &::after{
+                                background: url(../images/Listening5Step.png) no-repeat;
+                                background-position: 0 -540px;
+                                display: inline-block;
+                                content: " ";
+                                width: 16px;
+                                height: 16px;
+                                vertical-align: middle;
+                            }
+                        
+                        }
+                        .rightline{
+                            &::after{
+                                transform: rotate(20deg);
+                                display: block;
+                                content: " ";
+                                font-size: 16px;
+                                position: absolute;
+                                width: 1px;
+                                height: 16px;
+                                border: 1px solid #ffac00;
+                                left: 2px;
+                                top: 0;
+                            }
+                        }
+                        .tag-w{
+                            &::after{
+                                display: inline-block;
+                                content: " ";
+                                background: url(../images/Listening5Step.png) no-repeat;
+                                background-position: 0 -560px;
+                                width: 16px;
+                                height: 16px;
+                                vertical-align: middle;
+                            }
+                        }
+
+                    }
+                    
+                }
+                .step-answer, .step-btns-tag{
+                    margin-top: 60px;
+                    margin-bottom: 30px;
+                    .btn{
+                        display: block;
+                        width: 200px;
+                        height: 40px;
+                        padding: 0;
+                        border: none;
+                        border-radius: 4px;
+                        background: #ccc;
+                        color: #fff;
+                        line-height: 40px;
+                        font-size: 16px;
+                        outline: 0;
+                        text-align: center;
+                        margin: 0 auto;
+                        -webkit-touch-callout: none;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                    }
+                    .btn-ok{
+                        background-color: #ee8523;
+                    }
+                }
+            }
+            // 第二部分
+            .training-stress{
+                overflow: hidden;
+                .training-step{
+                    font-size: 16px;
+                    color: #36434d;
+                    line-height: 26px;
+                    padding-top: 25px;
+                    span{
+                        position: relative;
+                    }
+                    &>p{
+                        position: relative;
+                        padding-left: 25px;
+                        font-size: 16px;
+                        color: #36434d;
+                        line-height: 26px;
+                        &::before{
+                            display: inline-block;
+                            content: " ";
+                            position: absolute;
+                            width: 15px;
+                            height: 15px;
+                            background: #ccc;
+                            margin-right: 10px;
+                            left: 0;
+                            top: 4px;
+                        }
+                    }
+                    .training-answer{
+                        padding-bottom: 25px;
+                        border-bottom: 1px solid #ccc;
+                        padding-left: 25px;
+                        .training-title {
+                            padding: 15px 0 4px 0;
+                            font-size: 16px;
+                            line-height: 20px;
+                            font-weight: bold;
+                        }
+                    }
+                    // 第二部分加粗
+                    .repetition{
+                        font-weight: bold;
+                    }
+                }
+            }
+            // 第三部分
+            .grade-content{
+                padding-bottom: 15px;
+                padding-top: 5px;
+                .grade-list{
+                    width: 480px;
+                    margin: 0 auto;
+                    ul{
+                        overflow: hidden;
+                        li{
+                            float: left;
+                            width: 150px;
+                            height: 40px;
+                            border: 1px solid #ee8523;
+                            font-size: 16px;
+                            color: #ee8523;
+                            background-color: #fff;
+                            text-align: center;
+                            line-height: 40px;
+                            cursor: pointer;                            
+                        }
+                        li:nth-of-type(1), :nth-of-type(2) {
+                            border-right: 0;
+                        }
+                        .grade-select{
+                            color: #fff;
+                            background-color: #ee8523;
+                        }
+                    }
+                }
+                .grade-tips{
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                    border: 1px dashed #ccc;
+                    width: 100%;
+                    height: 80px;
+                    line-height: 80px;
+                    text-align: center;
+                    display: none;
+                }
+                // 初级
+                .grade-box{
+                    overflow: hidden;
+                    .grade-left{
+                        display: table-cell;
+                        width: 50%;
+                        padding-top: 15px;
+                        font-size: 16px;
+                        line-height: 26px;
+                        height: 100%;
+                        vertical-align: top;
+                        span{
+                            position: relative;
+                        }
+                        .grade-step{
+                            padding-left: 56px;
+                            padding-right: 30px;
+                            position: relative;
+                            i{
+                                background: url(../images/wbjt1.png) no-repeat;
+                                width: 40px;
+                                height: 38px;
+                                border-radius: 50%;
+                                position: absolute;
+                                left: 0;
+                                top: 28%;
+                                cursor: pointer;
+                            }
+                            .voice-playing{
+                            // 这里写个动画   
+                            }
+                            .training-already{
+                                padding-top: 16px;
+                                position: relative;
+                                .top{
+                                    font-weight: bold;
+                                }
+                                .red{
+                                    color: #ffac00;
+                                }
+                                // 符号效果
+                                .connect i{
+                                    background:  url(../images/Listening5Step.png) no-repeat;
+                                    background-position: 1px -530px;
+                                    position: absolute;
+                                    width: 20px;
+                                    height: 10px;
+                                    left: -7px;
+                                    top: 18px;
+                                    display: inline-block;
+                                    vertical-align: middle;
+                                }
+                                
+                                .leftline{
+                                    &::after{
+                                        display: block;
+                                        content: " ";
+                                        font-size: 16px;
+                                        position: absolute;
+                                        width: 1px;
+                                        height: 16px;
+                                        border: 1px solid #ffac00;
+                                        left: 2px;
+                                        top: 0;
+                                        -webkit-transform: rotate(-20deg);
+                                        -moz-transform: rotate(-20deg);
+                                        -ms-transform: rotate(-20deg);
+                                        -o-transform: rotate(-20deg);
+                                        transform: rotate(-20deg);
+                                    }
+                                }
+                                .tag-j{
+                                    &::after{
+                                        background: url(../images/Listening5Step.png) no-repeat;
+                                        background-position: 0 -540px;
+                                        display: inline-block;
+                                        content: " ";
+                                        width: 16px;
+                                        height: 16px;
+                                        vertical-align: middle;
+                                    }
+                                
+                                }
+                                .rightline{
+                                    &::after{
+                                        transform: rotate(20deg);
+                                        display: block;
+                                        content: " ";
+                                        font-size: 16px;
+                                        position: absolute;
+                                        width: 1px;
+                                        height: 16px;
+                                        border: 1px solid #ffac00;
+                                        left: 2px;
+                                        top: 0;
+                                    }
+                                }
+                                .tag-w{
+                                    &::after{
+                                        display: inline-block;
+                                        content: " ";
+                                        background: url(../images/Listening5Step.png) no-repeat;
+                                        background-position: 0 -560px;
+                                        width: 16px;
+                                        height: 16px;
+                                        vertical-align: middle;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .grade-right{
+                        position: relative;
+                        display: table-cell;
+                        width: 50%;
+                        border-left: 1px solid #ccc;
+                        padding-left: 30px;
+                        height: 100%;
+                        padding-top: 38px;
+                        vertical-align: top;
+                        #wordlist{
+                            width: 509px;
+                            overflow-x: hidden;
+                            overflow-y: scroll;
+                            height: 626px;
+                            border: 1px solid #ccc;
+                            .gradient{
+                                background: -webkit-linear-gradient(45deg,#fc9c43,#eb6c06);
+                                color: #fff;
+                                height: 52px;
+                                font-weight: bold;
+                                line-height: 52px;
+                                div{
+                                    height: 100%;
+                                    float: left;
+                                    text-align: left;
+                                    &:nth-child(1){
+                                        width: 30%;
+                                        padding-left: 20px;
+                                    }
+                                    &:nth-child(2){
+                                        width: 45%;
+                                    }
+                                }
+                                
+                            }
+                            // 没有内容时
+                            .noWord{
+                                overflow: hidden;
+                                margin-top: 50px;
+                                display: none;
+                                .addIcon{
+                                    width: 60px;
+                                    height: 50px;
+                                    background-image: url(../images/wordlist.png);
+                                    background-position: center top;
+                                    margin: 0 auto;
+                                    padding-bottom: 30px;
+                                }
+                                p{
+                                   text-align: center;
+                                }
+                            }
+                            // 内容列表
+                            .wordNote{
+                                overflow: hidden;
+                                .wordNoteList{
+                                    overflow: hidden;
+                                    li{
+                                        height: 52px;
+                                        width: 100%;
+                                        font-size: 16px;
+                                        border-bottom: 1px solid #ccc;
+                                        div{
+                                            float: left;
+                                            text-align: left;
+                                            height: 100%;
+                                            line-height: 52px;
+                                            overflow: hidden;
+                                            white-space: nowrap;
+                                            text-overflow: ellipsis;
+                                            &:nth-child(1) {
+                                                width: 30%;
+                                                padding-left: 20px;
+                                            }
+                                            &:nth-child(2) {
+                                                width: 45%;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                // 中级
+                .grade-middle-box{
+                    position: relative;
+                    .prototype-wrapper{
+                        padding-bottom: 42px;
+                        padding-top: 30px;
+                        position: relative;
+                        .jp_container_1-box{
+                            left: 525px;
+                            position: absolute;
+                            top: 302px;
+                            z-index: 999;
+                            line-height: 12px;
+                            .jp_container_1 div{
+                                display: inline-block;
+                                font-size: 12px;
+                                color: #3a4c5a;
+                            }
+                        }
+                        .play-progress{
+                            width: 240px;
+                            height: 240px;
+                            border-radius: 50%;
+                            position: relative;
+                            top: 3px;
+                            left: 50%;
+                            margin-left: -120px;
+                            z-index: 1;
+                            background-color: transparent;
+                            .play-shader{
+                                width: 230px;
+                                height: 230px;
+                                left: 5px;
+                                top: 5px;
+                                border-radius: 50%;
+                                background-color: #fff;
+                                z-index: 2;
+                                position: absolute;
+                            }
+                            .playinghorn{
+                                
+                                width: 210px;
+                                height: 210px;
+                                border-radius: 50%;
+                                position: absolute;
+                                z-index: 14;
+                                left: 15px;
+                                top: 16px;
+                                cursor: default;
+                                background: url(../images/Listening5Step.png) no-repeat;
+                                background-position: 5px -215px;
+                            }
+                        }
+                    }
+                    .grade-middle-step{
+                        padding-top: 25px;
+                        padding-bottom: 5px;
+                        p{
+                            font-size: 16px;
+                            line-height: 26px;
+                            color: #36433d;
+                        }
+                    }
+
+                    .u-btn-box{
+                        margin-top: 45px;
+                        margin-bottom: 45px;
+                        position: relative;
+                        overflow: hidden;
+                        text-align: center;
+                        .btn{
+                            display: inline-block;
+                            width: 200px;
+                            height: 40px;
+                            padding: 0;
+                            border: none;
+                            border-radius: 4px;
+                            background: #ccc;
+                            color: #fff;
+                            line-height: 40px;
+                            font-size: 16px;
+                            outline: 0;
+                            -webkit-touch-callout: none;
+                            -webkit-user-select: none;
+                            -moz-user-select: none;
+                            -ms-user-select: none;
+                            user-select: none;
+                        }
+                        .btn-ok{
+                            background-color: #ee8523;
+                        }
+                    }
+                }
+                // 高级
+                .grade-high-box{
+                    padding-bottom: 12px;
+                    .prototype-wrapper{
+                        padding-bottom: 42px;
+                        padding-top: 30px;
+                        position: relative;
+                        .jp_container_1-box{
+                            position: absolute;
+                            left: 525px;
+                            top: 302px;
+                            z-index: 999;
+                            line-height: 12px;
+                            .jp_container_1 div{
+                                display: inline-block;
+                                font-size: 12px;
+                                color: #3a4c5a;
+                            }
+                        }
+                        .play-progress{
+                            width: 240px;
+                            height: 240px;
+                            border-radius: 50%;
+                            position: relative;
+                            top: 3px;
+                            left: 50%;
+                            margin-left: -120px;
+                            z-index: 1;
+                            background-color: transparent;
+                            .play-shader{
+                                width: 230px;
+                                height: 230px;
+                                left: 5px;
+                                top: 5px;
+                                border-radius: 50%;
+                                background-color: #fff;
+                                z-index: 2;
+                                position: absolute;
+                            }
+                            .playinghorn{
+                                
+                                width: 210px;
+                                height: 210px;
+                                border-radius: 50%;
+                                position: absolute;
+                                z-index: 14;
+                                left: 15px;
+                                top: 16px;
+                                cursor: default;
+                                background: url(../images/readyPlay.png) no-repeat;
+                                // background-position: 5px -215px;
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+        // 精听原文
+        .quietly-content{
+            overflow: hidden;
+            .content-tips{
+                border: 1px dashed #ccc;
+                padding-bottom: 27px;
+                padding-top: 27px;
+                margin-bottom: 30px;
+                height: 24px;
+                .pattern1{
+                    font-size: 16px;
+                    line-height: 24px;
+                    text-align: center;
+
+                }
+            }
+            .prototype-wrapper{
+                padding-bottom: 42px;
+                padding-top: 30px;
+                position: relative;
+                .jp_container_1-box{
+                    position: absolute;
+                    left: 525px;
+                    top: 302px;
+                    z-index: 999;
+                    line-height: 12px;
+                    .jp_container_1 div{
+                        display: inline-block;
+                        font-size: 12px;
+                        color: #3a4c5a;
+                    }
+                }
+                .play-progress{
+                    width: 240px;
+                    height: 240px;
+                    border-radius: 50%;
+                    position: relative;
+                    top: 3px;
+                    left: 50%;
+                    margin-left: -120px;
+                    z-index: 1;
+                    background-color: transparent;
+                    .play-shader{
+                        width: 230px;
+                        height: 230px;
+                        left: 5px;
+                        top: 5px;
+                        border-radius: 50%;
+                        background-color: #fff;
+                        z-index: 2;
+                        position: absolute;
+                    }
+                    .playinghorn{
+                        
+                        width: 210px;
+                        height: 210px;
+                        border-radius: 50%;
+                        position: absolute;
+                        z-index: 14;
+                        left: 15px;
+                        top: 16px;
+                        cursor: default;
+                        background: url(../images/readyPlay.png) no-repeat;
+                        //background-position: 5px -215px;
+                    }
+                }
+
+            }
+            .quietly-listen-contain{
+                width: 360px;
+                height: 50px;
+                border: 1px solid #ccc;
+                margin: 60px auto 0;
+                position: relative;
+                text-align: center;
+                line-height: 50px;
+                &>div:first-of-type{
+                    position: absolute;
+                    background-color: #fff;
+                    width: 80px;
+                    height: 32px;
+                    top: -28px;
+                    left: 38%;
+                    z-index: 5;
+                    font-size: 40px;
+                    line-height: 40px;
+                    text-align: center;
+                    color: #ccc;
+                    font-weight: bold;
+                    &::before{
+                        display: block;
+                        content: " ";
+                        width: 6px;
+                        height: 6px;
+                        top: 24px;
+                        border: 1px solid #ccc;
+                        background-color: #ccc;
+                        border-radius: 50%;
+                        z-index: 5;
+                        left: 76px;
+                        position: absolute;
+                    }
+                    &::after{
+                        display: block;
+                        content: " ";
+                        width: 6px;
+                        height: 6px;
+                        top: 24px;
+                        border: 1px solid #ccc;
+                        background-color: #ccc;
+                        border-radius: 50%;
+                        z-index: 5;
+                        left: -2px;
+                        position: absolute;
+                    }
+                }
+                p{
+                    font-size: 18px;
+                    font-weight: bold;
+                    color: #ccc;
+                    letter-spacing: 10px;
+                    margin-left: 12px;
+                }
+            }
+            .step-btns{
+                overflow: hidden;
+                text-align: center;
+                .disabled{
+                    background: #999;
+                    cursor: inherit;
+                }
+                .isok{
+                    display: inline-block !important;
+                }
+            }
+        }
+    }
+}
