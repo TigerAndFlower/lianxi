@@ -112,7 +112,7 @@
 									<b>不能暂停</b>，播放过程中请集中注意力。</p>
 							</div>
 							<audio preload="auto" class="first-audio">
-									<source = src="../images/audio1.mp3" type="audio/mp3">
+								<source=s rc="../images/audio1.mp3" type="audio/mp3">
 							</audio>
 							<div class="prototype-wrapper">
 								<div class="jp_container_1-box">
@@ -134,7 +134,7 @@
 						</div>
 					</div>
 					<!-- 记录生词 -->
-					<div class="record-content JsContent" style="display: none">
+					<div class="record-content JsContent" style="display: none" id="record">
 						<!-- 记录生词 -->
 						<div class="new-word-con">
 							<div class="record-left ">
@@ -172,7 +172,7 @@
 									<div class="listTitle gradient clearfix">
 										<div>单词</div>
 										<div>释义</div>
-										<div data-act="add">
+										<div class="record-add-btn">
 											<i class="add_oper"></i>添加</div>
 									</div>
 									<div class="wordlistBody emptyList">
@@ -183,45 +183,10 @@
 										</div>
 										<div class="wordNote">
 											<ul class="wordNoteList">
-												<li data-user-wid="344181">
-													<div class="listElement">aaa</div>
-													<div class="listElement listElement_new">aaa</div>
-													<div class="listElement">
-														<label data-act="editItem" class="editItem">编辑</label>
-														<i class="divide"></i>
-														<label data-act="deleteItem" class="deleteItem">删除</label>
-													</div>
-												</li>
-												<li data-user-wid="344181">
-													<div class="listElement">aaa</div>
-													<div class="listElement listElement_new">aaa</div>
-													<div class="listElement">
-														<label data-act="editItem" class="editItem">编辑</label>
-														<i class="divide"></i>
-														<label data-act="deleteItem" class="deleteItem">删除</label>
-													</div>
-												</li>
-												<li data-user-wid="344181">
-													<div class="listElement">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-													<div class="listElement listElement_new">aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
-													<div class="listElement">
-														<label data-act="editItem" class="editItem">编辑</label>
-														<i class="divide"></i>
-														<label data-act="deleteItem" class="deleteItem">删除</label>
-													</div>
-												</li>
-												<li data-user-wid="344181">
-													<div class="listElement">aaa</div>
-													<div class="listElement listElement_new">aaa</div>
-													<div class="listElement">
-														<label data-act="editItem" class="editItem">编辑</label>
-														<i class="divide"></i>
-														<label data-act="deleteItem" class="deleteItem">删除</label>
-													</div>
-												</li>
-												<li data-user-wid="344181">
-													<div class="listElement">aaa</div>
-													<div class="listElement listElement_new">aaa</div>
+												<!-- 第一个用来做添加的模板 默认隐藏 -->
+												<li class="js-word-list" id="new_li" style="display:none">
+													<div class="listElement"></div>
+													<div class="listElement listElement_new"></div>
 													<div class="listElement">
 														<label data-act="editItem" class="editItem">编辑</label>
 														<i class="divide"></i>
@@ -234,11 +199,29 @@
 										<!-- 弹出层 -->
 										<!-- 弹出层根据点击的按钮不同，通过JS把对应的内容添加到弹出层 -->
 										<div class="wrapper_wordlist" style="width: 400px;">
-											<div class="titleBar gradient">
+											<div class="titleBar gradient js-title-lay">
 												<span class="m-act-del"></span>
+												<span class="titleBar-title">添加单词</span>
 											</div>
 											<!-- 添加 -->
-											<div id="add_word" class="hide-element">
+											<div id="add_word" class="js-zsgc hide-element">
+												<div class="dialog">
+													<div class="wordAdding">
+														<p class="modal_label">单词</p>
+														<input type="text" class="wordlistInp add-word">
+													</div>
+													<div>
+														<p class="modal_label">释义</p>
+														<textarea class="wordlistTextarea add-paraphrase"></textarea>
+													</div>
+													<div class="wordlist-oper">
+														<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist add-affirm">
+														<input type="button" value="取消" class="btn close-btn btn-wordlist ">
+													</div>
+												</div>
+											</div>
+											<!-- 修改 -->
+											<div id="edit_word" class="js-zsgc hide-element">
 												<div class="dialog">
 													<div class="wordAdding">
 														<p class="modal_label">单词</p>
@@ -249,37 +232,20 @@
 														<textarea class="wordlistTextarea"></textarea>
 													</div>
 													<div class="wordlist-oper">
-														<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist" data-act="confirm">
-														<input type="button" value="取消" class="btn btn-wordlist cancel-wordlist" data-act="cancel">
-													</div>
-												</div>
-											</div>
-											<!-- 修改 -->
-											<div id="edit_word">
-												<div class="dialog">
-													<div class="wordAdding">
-														<p class="modal_label">单词</p>
-														<input type="text" class="wordlistInp" value="sdfsd">
-													</div>
-													<div>
-														<p class="modal_label">释义</p>
-														<textarea class="wordlistTextarea">fsdfsd</textarea>
-													</div>
-													<div class="wordlist-oper">
-														<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist" data-act="confirm">
-														<input type="button" value="取消" class="btn btn-wordlist cancel-wordlist" data-act="cancel">
+														<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist ">
+														<input type="button" value="取消" class="btn close-btn btn-wordlist">
 													</div>
 												</div>
 											</div>
 											<!-- 删除 -->
-											<div id="delete_word" class="hide-element">
+											<div id="delete_word" class="js-zsgc hide-element">
 												<div class="dialog">
 													<p class="delTip">
 														是否确认删除单词？
 													</p>
 													<div class="wordlist-oper">
-														<input type="button" value="确认" class="btn btn-wordlist confirm-wordlist" data-act="confirm">
-														<input type="button" value="取消" class="btn btn-wordlist cancel-wordlist" data-act="cancel">
+														<input type="button" value="确认" id="del-btn" class="btn btn-wordlist confirm-wordlist" >
+														<input type="button" value="取消" class="btn close-btn btn-wordlist">
 													</div>
 												</div>
 											</div>
@@ -306,7 +272,7 @@
 							</div>
 							<div class="translation-step noAllowed j-trans-step">
 								<p>Community service is an important component of education here at our university.</p>
-								<textarea class="textarea j-trans-textarea" data-questid="9301_1"></textarea>
+								<textarea class="textarea j-trans-textarea"></textarea>
 								<div class="translation-answer">
 									<h2 class="translation-title">参考答案</h2>
 									<p>在我们大学这里，社区服务是教育的一个重要组成部分。</p>
@@ -314,7 +280,7 @@
 							</div>
 							<div class="translation-step j-trans-step">
 								<p>We encourage all students to volunteer for at least one community activity before they graduate.</p>
-								<textarea class="textarea j-trans-textarea" data-questid="9301_2"></textarea>
+								<textarea class="textarea j-trans-textarea"></textarea>
 								<div class="translation-answer">
 									<h2 class="translation-title">参考答案</h2>
 									<p>我们鼓励所有的学生在他们毕业前至少参加一次社区志愿活动。</p>
@@ -322,7 +288,7 @@
 							</div>
 							<div class="translation-step j-trans-step">
 								<p>A new community program called "One On One" helps elementary students who've fallen behind.</p>
-								<textarea class="textarea j-trans-textarea" data-questid="9301_3"></textarea>
+								<textarea class="textarea j-trans-textarea"></textarea>
 								<div class="translation-answer">
 									<h2 class="translation-title">参考答案</h2>
 									<p>一个新的社区计划，叫做“一对一”，帮助落后的小学生。</p>
@@ -331,7 +297,7 @@
 							<div class="translation-step j-trans-step">
 								<p>You education majors might be especially interested in it because it offers the opportunity to do some teaching —
 									that is, tutoring in math and English.</p>
-								<textarea class="textarea j-trans-textarea" data-questid="9301_4"></textarea>
+								<textarea class="textarea j-trans-textarea"></textarea>
 								<div class="translation-answer">
 									<h2 class="translation-title">参考答案</h2>
 									<p>你们教育专业的可能对此尤其感兴趣，因为它提供了教学的机会，也就是说，辅导数学和英语。</p>
@@ -339,10 +305,10 @@
 							</div>
 
 							<div class="step-answer" data-step="1">
-								<span class="btn answer">查看答案</span>
+								<span class="btn answer" id="translation-btn" style="background-color: #27AEC2">查看答案</span>
 							</div>
 							<div class="step-btns translation-next j-next-btn-box" style="display: none;">
-								<span class="btn btn-next">下一步</span>
+								<span class="btn btn-next" id="translation-next" style="background-color: #27AEC2">下一步</span>
 							</div>
 						</div>
 					</div>
@@ -1724,7 +1690,7 @@
 									</div>
 								</div>
 								<div class="grade-right">
-									<div id="wordlist">
+									<div id="wordlist2">
 										<div class="listTitle gradient clearfix">
 											<div>单词</div>
 											<div>释义</div>
@@ -1743,7 +1709,8 @@
 														<div class="contentCollapse  listElement" data-original-title="" title="">导读顶顶顶顶多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多</div>
 														<div class="listElement listElement_new"></div>
 														<!-- <div class="listElement">
-																<label data-act="editItem" class="editItem">编辑</label>
+						
+															<label data-act="editItem" class="editItem">编辑</label>
 																<i class="divide"></i>
 																<label data-act="deleteItem" class="deleteItem">删除</label>
 															</div> -->
@@ -1816,7 +1783,7 @@
 														</div>
 														<div class="wordlist-oper">
 															<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist" data-act="confirm">
-															<input type="button" value="取消" class="btn btn-wordlist cancel-wordlist" data-act="cancel">
+															<input type="button" value="取消" class="btn btn-wordlist  " data-act="cancel">
 														</div>
 													</div>
 												</div> -->
@@ -1828,7 +1795,7 @@
 														</div>
 														<div class="wordlist-oper">
 															<input type="button" value="保存修改" class="btn btn-wordlist-lg confirm-wordlist" data-act="confirm">
-															<input type="button" value="取消" class="btn btn-wordlist-lg cancel-wordlist" data-act="cancel">
+															<input type="button" value="取消" class="btn btn-wordlist-lg  " data-act="cancel">
 														</div>
 													</div>
 												</div> -->
@@ -1840,7 +1807,7 @@
 														</p>
 														<div class="wordlist-oper">
 															<input type="button" value="确认" class="btn btn-wordlist confirm-wordlist" data-act="confirm">
-															<input type="button" value="取消" class="btn btn-wordlist cancel-wordlist" data-act="cancel">
+															<input type="button" value="取消" class="btn btn-wordlist  " data-act="cancel">
 														</div>
 													</div>
 												</div> -->

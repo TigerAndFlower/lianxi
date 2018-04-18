@@ -37,8 +37,8 @@
 }
 .main .five-wrap .caption .left-box .caption-desc a {
   display: inline-block;
-  border-bottom: 1px solid #ee8523;
-  color: #ee8523;
+  border-bottom: 1px solid #27AEC2;
+  color: #27AEC2;
 }
 .main .five-wrap .caption .right-box {
   height: 60px;
@@ -186,7 +186,7 @@
   cursor: pointer;
 }
 .main .five-wrap .content .step-btns .btn-ok {
-  background-color: #ee8523;
+  background-color: #27AEC2;
 }
 .main .five-wrap .new-word-con {
   display: block;
@@ -234,8 +234,8 @@
   border: 1px solid #ccc;
 }
 .main .five-wrap .new-word-con .record-right #wordlist .gradient {
-  background: -webkit-linear-gradient(45deg, #fc9c43, #eb6c06);
-  background: -o-linear-gradient(45deg, #fc9c43, #eb6c06);
+  background: -webkit-linear-gradient(45deg, #27AEff, #27AEC2);
+  background: -o-linear-gradient(45deg, #27AEC2, #27AEC2);
   color: #fff;
 }
 .main .five-wrap .new-word-con .record-right #wordlist .listTitle {
@@ -356,7 +356,7 @@
   display: none;
 }
 .main .five-wrap .new-word-con .record-right #wordlist .wordlistBody .wrapper_wordlist .titleBar {
-  background: -webkit-linear-gradient(45deg, #fc9c43, #eb6c06);
+  background: -webkit-linear-gradient(45deg, #27AEff, #27AEC2);
   color: #fff;
   height: 40px;
   text-align: center;
@@ -389,6 +389,9 @@
 .main .five-wrap .new-word-con .record-right #wordlist .wordlistBody .wrapper_wordlist .titleBar .m-act-del::after {
   transform: rotate(-45deg);
 }
+.main .five-wrap .new-word-con .record-right #wordlist .wordlistBody .wrapper_wordlist .titleBar .titleBar-title {
+  text-align: center;
+}
 .main .five-wrap .new-word-con .record-right #wordlist .wordlistBody .wrapper_wordlist .hide-element {
   display: none;
 }
@@ -396,6 +399,7 @@
   padding: 30px 20px;
   font-size: 18px;
   background-color: #fff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
 .main .five-wrap .new-word-con .record-right #wordlist .wordlistBody .wrapper_wordlist .dialog .wordAdding {
   padding-bottom: 30px;
@@ -433,7 +437,7 @@
   font-size: 14px;
   line-height: 30px;
   padding: 0;
-  background: #ee8523;
+  background: #27AEC2;
   border-radius: 4px;
   color: #fff;
   border: none;
@@ -481,7 +485,7 @@
   user-select: none;
 }
 .main .five-wrap .new-word-con .record-right .step-btns .btn-ok {
-  background-color: #ee8523;
+  background-color: #27AEC2;
 }
 .main .five-wrap .translation-content {
   padding: 30px;
@@ -600,7 +604,7 @@
 }
 .main .five-wrap .content-step .step-answer .btn-ok,
 .main .five-wrap .content-step .step-btns .btn-ok {
-  background-color: #ee8523;
+  background-color: #27AEC2;
 }
 .main .five-wrap .content-step .training-tag .training-step {
   font-size: 16px;
@@ -740,7 +744,7 @@
 }
 .main .five-wrap .content-step .training-tag .step-answer .btn-ok,
 .main .five-wrap .content-step .training-tag .step-btns-tag .btn-ok {
-  background-color: #ee8523;
+  background-color: #27AEC2;
 }
 .main .five-wrap .content-step .training-stress {
   overflow: hidden;
@@ -801,9 +805,9 @@
   float: left;
   width: 150px;
   height: 40px;
-  border: 1px solid #ee8523;
+  border: 1px solid #27AEC2;
   font-size: 16px;
-  color: #ee8523;
+  color: #27AEC2;
   background-color: #fff;
   text-align: center;
   line-height: 40px;
@@ -815,7 +819,7 @@
 }
 .main .five-wrap .content-step .grade-content .grade-list ul .grade-select {
   color: #fff;
-  background-color: #ee8523;
+  background-color: #27AEC2;
 }
 .main .five-wrap .content-step .grade-content .grade-tips {
   margin-top: 30px;
@@ -1092,7 +1096,7 @@
   user-select: none;
 }
 .main .five-wrap .content-step .grade-content .grade-middle-box .u-btn-box .btn-ok {
-  background-color: #ee8523;
+  background-color: #27AEC2;
 }
 .main .five-wrap .content-step .grade-content .grade-high-box {
   padding-bottom: 12px;
