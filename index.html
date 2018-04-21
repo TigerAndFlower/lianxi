@@ -52,11 +52,8 @@
 					</div>
 					<!-- 用户登录情况 -->
 					<div class="fr login">
-
-
 						<a href="http://www.ieduchina.com/login.html?forward={$forward}" class="sign transit">登录</a>
 						<a href="http://www.ieduchina.com/register.html?forward={$forward}" class="btn reg transit header-zhuce">注册</a>
-
 					</div>
 				</div>
 			</div>
@@ -84,7 +81,7 @@
 							<div class="left-box" style="display: none">
 								<p class="caption-title">跟读原文</p>
 								<p class="caption-desc">Part Ⅰ: 连读标记。标记原文中的连读现象。
-									<a href="javascript:;">跟读训练说明</a>
+									<a href="javascript:;" id="specification">跟读训练说明</a>
 								</p>
 							</div>
 							<div class="left-box" style="display: none">
@@ -102,8 +99,9 @@
 							</div>
 						</div>
 					</div>
+
 					<!-- 预听全文 -->
-					<div class="content content-step JsContent">
+					<div class="content content-step pre-content JsContent" id="pre_listen">
 						<!-- 音频部分 -->
 						<div class="content">
 							<div class="content-tips">
@@ -111,25 +109,27 @@
 									<b>播放一次</b>，开始播放后
 									<b>不能暂停</b>，播放过程中请集中注意力。</p>
 							</div>
-							<audio preload="auto" class="first-audio">
-								<source=s rc="../images/audio1.mp3" type="audio/mp3">
+							<audio preload="preload" class="first-audio">
+								<source src="../images/audio1.mp3" type="audio/mp3">
 							</audio>
 							<div class="prototype-wrapper">
 								<div class="jp_container_1-box">
 									<div class="jp_container_1">
-										<div class="jp-current-time-new">00:00</div>
+										<p class="pre_timeline timeline">
+											<span></span>
+										</p>
+										<div class="js-pre-current-time">00:00</div>
 										/
-										<div class="jp-duration-new">00:00</div>
+										<div class="js-pre-duration">00:00</div>
 									</div>
 								</div>
 								<!-- A wrapper to emulate use in a webpage and center align -->
 								<div class="play-progress" id="js-first-audio">
-									<div class="play-shader"></div>
-									<div class="playinghorn"></div>
+									<div class="playinghorn" id="js-pre-listen"></div>
 								</div>
 							</div>
-							<div class="step-btns ">
-								<span class="btn js-listening-btn">下一步</span>
+							<div class="step-btns">
+								<span class="btn js-listening-btn" id="js-pre-btn" style="margin-top: 50px;">下一步</span>
 							</div>
 						</div>
 					</div>
@@ -193,6 +193,16 @@
 														<label data-act="deleteItem" class="deleteItem">删除</label>
 													</div>
 												</li>
+												<li class="js-word-list">
+													<div class="listElement">aa</div>
+													<div class="listElement listElement_new">dd</div>
+													<div class="listElement">
+														<label data-act="editItem" class="editItem">编辑</label>
+														<i class="divide"></i>
+														<label data-act="deleteItem" class="deleteItem">删除</label>
+													</div>
+												</li>
+
 											</ul>
 										</div>
 
@@ -225,14 +235,14 @@
 												<div class="dialog">
 													<div class="wordAdding">
 														<p class="modal_label">单词</p>
-														<input type="text" class="wordlistInp">
+														<input type="text" class="wordlistInp edit-word">
 													</div>
 													<div>
 														<p class="modal_label">释义</p>
-														<textarea class="wordlistTextarea"></textarea>
+														<textarea class="wordlistTextarea edit-paraphrase"></textarea>
 													</div>
 													<div class="wordlist-oper">
-														<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist ">
+														<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist edit-affirm">
 														<input type="button" value="取消" class="btn close-btn btn-wordlist">
 													</div>
 												</div>
@@ -244,7 +254,7 @@
 														是否确认删除单词？
 													</p>
 													<div class="wordlist-oper">
-														<input type="button" value="确认" id="del-btn" class="btn btn-wordlist confirm-wordlist" >
+														<input type="button" value="确认" id="del-btn" class="btn btn-wordlist confirm-wordlist">
 														<input type="button" value="取消" class="btn close-btn btn-wordlist">
 													</div>
 												</div>
@@ -258,13 +268,13 @@
 
 								</div>
 								<div class="step-btns record-btn j-next-btn-box">
-									<span class="btn btn-next">下一步</span>
+									<span class="btn btn-next btn-ok" id="word_next">下一步</span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- 翻译原文 -->
-					<div class="translation-content content-step JsContent" style="display: none;">
+					<div class="translation-content content-step JsContent" id="translate" style="display: none;">
 						<!-- 翻译原文   translation-answer默认隐藏，点击查看答案后显示，并且不能返回添加disabled属性-->
 						<div class="translation-content content-step">
 							<div class="translation-tips" style="display: block;">
@@ -314,351 +324,224 @@
 					</div>
 
 					<!-- 跟读训练内容 -->
-					<div class="training-content content-step JsContent" style="display: none;">
+					<div class="training-content content-step JsContent" id="follow" style="display: none;">
 						<!-- 跟读训练第一步-->
-						<div class="training-content training-tag j-training-step" style="display: none;">
-							<div class="j-popover-tag-container u-popover-tag-container"></div>
+						<div class="training-content training-tag j-training-step">
+							<div class="j-popover-tag-container u-popover-tag-container">
+								<div class="popoverss fade top in" role="tooltip" id="popover">
+									<div class="popover-content">
+										<ul class="popover-box">
+											<li name="tag_lianxu">连读</li>
+											<li name="tag_right">失爆</li>
+											<li name="tag_j">j</li>
+											<li name="tag_diehe">叠合</li>
+											<li name="tag_left">击穿</li>
+											<li name="tag_w">w</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 							<div class="training-tips">
 								<p>点击
 									<strong class="quest-smark"></strong>，选择连读现象。</p>
 							</div>
 							<div class="training-step">
-								<p data-num="0" data-questid="9301_1">
-									<span class="top">Community</span>
-									<span class="top">servic
-										<span class="left">e</span>
-									</span>
-									<span data-smarknum="0">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">i</span>
-									<span class="left">s</span>
-									<span data-smarknum="1">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">a</span>
-									<span class="left">n</span>
-									<span data-smarknum="2">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">i</span>mportan
-										<span class="left">t</span>
-									</span>
-									<span data-smarknum="3">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">c</span>omponen
-										<span class="left" style="cursor: default;">t</span>
-									</span>
-									<span data-smarknum="4" style="cursor: pointer; visibility: visible;">
-										<i data-original-title="" title="" data-toggle="changemark" style="cursor: pointer;"></i>
-									</span>
-									<span class="right" style="cursor: default;">o</span>
-									<span class="left red" style="cursor: default;">f</span>
-									<span data-smarknum="5" style="cursor: pointer; visibility: visible;">
-										<i data-original-title="" title="" style="cursor: pointer;" data-toggle="changemark"></i>
-									</span>
-									<span class="top">
-										<span class="right red" style="cursor: default;" data-original-title="" title="">e</span>ducation</span> her
-									<span class="left">e</span>
-									<span data-smarknum="6">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">a</span>
-									<span class="left">t</span>
-									<span data-smarknum="7">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">o</span>ur
-									<span class="top">university</span>.</p>
-								<div class="training-answer">
+									<p data-id="1" class="liancu_list">
+										<span class="top ">Community</span>
+											<span class="top">servi
+												<span>ce</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>is</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>a</span>
+											<span>n</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span>i</span>mportan
+												<span class="leftline">t</span>&nbsp;</span>
+											<span class="top">componen
+												<span>t</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>o</span>
+											<span>f</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span>e</span>ducation</span> he
+											<span>re</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>a</span>
+											<span>t</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>our</span>
+											<span class="top">university</span>
+								</p>
+								<div class="training-answer liandu_daan">
 									<h2 class="training-title">参考答案</h2>
 									<p class="training-already">
-										<span class="top">Community</span>
-										<span class="top">servi
-											<span class="red">ce</span>
-										</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="red">i</span>
-										<span class="red">s</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="red">a</span>
-										<span class="red">n</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="top">
-											<span class="red">i</span>mportan
-											<span class="leftline">t</span>&nbsp;</span>
-										<span class="top">componen
-											<span class="red">t</span>
-										</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="red">o</span>
-										<span class="red">f</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="top">
-											<span class="red">e</span>ducation</span> he
-										<span class="red">re</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="red">a</span>
-										<span class="red">t</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="red">our</span>
-										<span class="top">university</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-
-								<p data-num="1" data-questid="9301_2">W
-									<span class="left">e</span>
-									<span class="connect" data-smarknum="0">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">e</span>ncourag
-										<span class="left">e</span>
-									</span>
-									<span class="connect" data-smarknum="1">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">a</span>ll</span>
-									<span class="top">students</span> to
-									<span class="top">volunteer</span> fo
-									<span class="left" style="cursor: default;">r</span>
-
-									<span class="right rightline" data-toggle="changemark" style="cursor: pointer;" data-original-title="" title="">a</span>
-									<span class="left">t</span>
-									<span class="connect" data-smarknum="3">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">l</span>eas
-										<span class="left">t</span>
-									</span>
-									<span class="connect" data-smarknum="4">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">o</span>ne</span>
-									<span class="top">communit
-										<span class="left">y</span>
-									</span>
-									<span class="connect" data-smarknum="5">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">a</span>ctivity</span> before they
-									<span class="top">graduat
-										<span class="left">e</span>
-									</span>
-									<span class="connect" data-smarknum="6">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">.</span>
-								</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">We
-										<span class="tag tag-j"></span>
-										<span class="top">encoura
-											<span class="red">ge</span>
-										</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="top">
-											<span class="red">a</span>ll</span>
-										<span class="top">students</span> to
-										<span class="top">volunteer</span> fo
-										<span class="red">r</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="red">a</span>
-										<span class="leftline">t</span>&nbsp;
-										<span class="top">leas
-											<span class="leftline">t</span>&nbsp;</span>
-										<span class="top">one</span>
-										<span class="top">community</span>
-										<span class="tag tag-j"></span>
-										<span class="top">activity</span> before they
-										<span class="top">gradua
-											<span class="leftline">te</span>&nbsp;</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-
-								<p data-num="7" data-questid="9301_8">He ha
-									<span class="left">s</span>
-									<span class="connect" data-smarknum="0">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">o</span>ffic
-										<span class="left">e</span>
-									</span>
-									<span class="connect" data-smarknum="1">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">h</span>our
-										<span class="left">s</span>
-									</span>
-									<span class="connect" data-smarknum="2">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">e</span>very</span>
-									<span class="top">Tuesda
-										<span class="left">y</span>
-									</span>
-									<span class="connect" data-smarknum="3">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">a</span>n
-									<span class="left">d</span>
-									<span class="connect" data-smarknum="4">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">T</span>hursda
-										<span class="left">y</span>
-									</span>
-									<span class="connect" data-smarknum="5">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">a</span>fternoon</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">He ha
-										<span class="red">s</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="top">
-											<span class="red">o</span>ffi
-											<span class="red">ce</span>
-										</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="top">
-											<span class="red">hou</span>r
+											<span class="top ">Community</span>
+											<span class="top">servi
+												<span class="red">ce</span>
+											</span>
+											<span class="connect link">
+												<i class="tag_left"></i>
+											</span>
+											<span class="red">i</span>
 											<span class="red">s</span>
-										</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="top">
-											<span class="red">e</span>very</span>
-										<span class="top">Tuesday</span>
-										<span class="tag tag-j"></span> an
-										<span class="leftline">d</span>&nbsp;
-										<span class="top">Thursday</span>
-										<span class="tag tag-j"></span>
-										<span class="top">afternoon</span>.</p>
+											<span class="connect link">
+												<i class="tag_liandu"></i>
+											</span>
+											<span class="red">a</span>
+											<span class="red">n</span>
+											<span class="connect link">
+												<i class="tag_liandu"></i>
+											</span>
+											<span class="top">
+												<span class="red">i</span>mportan
+												<span class="leftline">t</span>&nbsp;</span>
+											<span class="top">componen
+												<span class="red">t</span>
+											</span>
+											<span class="connect link">
+												<i class="tag_j"></i>
+											</span>
+											<span class="red">o</span>
+											<span class="red">f</span>
+											<span class="connect link">
+												<i class="tag_right"></i>
+											</span>
+											<span class="top">
+												<span class="red">e</span>ducation</span> he
+											<span class="red">re</span>
+											<span class="connect link">
+												<i class="tag_right"></i>
+											</span>
+											<span class="red">a</span>
+											<span class="red">t</span>
+											<span class="connect link">
+												<i class="tag_w"></i>
+											</span>
+											<span class="red">our</span>
+											<span class="top">university</span>		
+									</p>
 								</div>
 							</div>
 							<div class="training-step">
-
-								<p data-num="8" data-questid="9301_9">You can
-									<span class="top">sig
-										<span class="left">n</span>
-									</span>
-									<span class="connect" data-smarknum="0">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">u</span>
-										<span class="left">p</span>
-									</span>
-									<span class="connect" data-smarknum="1">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">f</span>or the
-									<span class="top">program</span> wit
-									<span class="left">h</span>
-									<span class="connect" data-smarknum="2">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">h</span>i
-									<span class="left">m</span>
-									<span class="connect" data-smarknum="3">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">a</span>n
-									<span class="left">d</span>
-									<span class="connect" data-smarknum="4">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">b</span>egin</span> the
-									<span class="top">tutoring</span>
-									<span class="top">nex
-										<span class="left">t</span>
-									</span>
-									<span class="connect" data-smarknum="5">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="top">
-										<span class="right">w</span>ee
-										<span class="left">k</span>
-									</span>
-									<span class="connect" data-smarknum="6">
-										<i data-toggle="changemark" data-original-title="" title=""></i>
-									</span>
-									<span class="right">.</span>
-								</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">You can
-										<span class="top">sig
-											<span class="red">n</span>
-										</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="top">
-											<span class="red">u</span>
-											<span class="leftline">p</span>&nbsp;</span>for the
-										<span class="top">program</span> with&nbsp;
-										<span class="rightline">h</span>i
-										<span class="red">m</span>
-										<span class="connect link">
-											<i></i>
-										</span>
-										<span class="red">a</span>n
-										<span class="leftline">d</span>&nbsp;
-										<span class="top">begin</span> the
-										<span class="top">tutoring</span>
-										<span class="top">nex
-											<span class="leftline">t</span>&nbsp;</span>
-										<span class="top">wee
-											<span class="leftline">k</span>&nbsp;</span>.</p>
+									<p data-id="2" class="liancu_list">
+											<span class="top ">Community</span>
+												<span class="top">servi
+													<span>ce</span>
+												</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>is</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>a</span>
+												<span>n</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span class="top">
+													<span>i</span>mportan
+													<span class="leftline">t</span>&nbsp;</span>
+												<span class="top">componen
+													<span>t</span>
+												</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>o</span>
+												<span>f</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span class="top">
+													<span>e</span>ducation</span> he
+												<span>re</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>a</span>
+												<span>t</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>our</span>
+												<span class="top">university</span>
+									</p>
+									<div class="training-answer liandu_daan">
+										<h2 class="training-title">参考答案</h2>
+										<p class="training-already">
+												<span class="top ">Community</span>
+												<span class="top">servi
+													<span class="red">ce</span>
+												</span>
+												<span class="connect link">
+													<i class="tag_left"></i>
+												</span>
+												<span class="red">i</span>
+												<span class="red">s</span>
+												<span class="connect link">
+													<i class="tag_liandu"></i>
+												</span>
+												<span class="red">a</span>
+												<span class="red">n</span>
+												<span class="connect link">
+													<i class="tag_liandu"></i>
+												</span>
+												<span class="top">
+													<span class="red">i</span>mportan
+													<span class="leftline">t</span>&nbsp;</span>
+												<span class="top">componen
+													<span class="red">t</span>
+												</span>
+												<span class="connect link">
+													<i class="tag_j"></i>
+												</span>
+												<span class="red">o</span>
+												<span class="red">f</span>
+												<span class="connect link">
+													<i class="tag_right"></i>
+												</span>
+												<span class="top">
+													<span class="red">e</span>ducation</span> he
+												<span class="red">re</span>
+												<span class="connect link">
+													<i class="tag_right"></i>
+												</span>
+												<span class="red">a</span>
+												<span class="red">t</span>
+												<span class="connect link">
+													<i class="tag_w"></i>
+												</span>
+												<span class="red">our</span>
+												<span class="top">university</span>		
+										</p>
+									</div>
 								</div>
-							</div>
 							<div class="step-answer" data-step="2">
-								<span class="btn answer">查看答案</span>
+								<span class="btn answer btn-ok " id="liandu-btn">查看答案</span>
 							</div>
 							<div class="step-btns-tag training-next j-training-btn-box" style="display: none;">
-								<span class="btn btn-next-tag">下一步</span>
+								<span class="btn btn-next-tag btn-ok" id="liandu_next">下一步</span>
 							</div>
 						</div>
 						<!-- 跟读训练第二步-->
@@ -667,20 +550,20 @@
 								<p>点击词汇，标记重读。词组重读时，可以顺序点击相关单词进行标记。</p>
 							</div>
 							<div class="training-step">
-								<p data-num="0" data-questid="9301_1">
-									<span class="top repetition" data-toggle="showstress" data-original-title="" title="">Community</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">service</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">is</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">an</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">important</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">component</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">of</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">education</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">here</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">at</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">our</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">university</span>.</p>
-								<div class="training-answer">
+								<p class="js-zhongdutimu" data-num="0" data-questid="9301_1">
+									<span class="top tag_str">Community</span>
+									<span class="top">service</span>
+									<span class="top">is</span>
+									<span class="top">an</span>
+									<span class="top">important</span>
+									<span class="top">component</span>
+									<span class="top">of</span>
+									<span class="top">education</span>
+									<span class="top">here</span>
+									<span class="top">at</span>
+									<span class="top">our</span>
+									<span class="top">university</span>.</p>
+								<div class="training-answer js-zhongdudaan">
 									<h2 class="training-title">参考答案</h2>
 									<p class="training-already">
 										<span class="top repetition">Community</span>
@@ -716,23 +599,24 @@
 								</div>
 							</div>
 							<div class="training-step">
-								<p data-num="1" data-questid="9301_2">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">We</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">encourage</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">all</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">students</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">to</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">volunteer</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">for</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">at</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">least</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">one</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">community</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">activity</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">before</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">they</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">graduate</span>.</p>
-								<div class="training-answer">
+								<p class="js-zhongdutimu" data-num="1" data-questid="9301_2">
+									<span class="top">We</span>
+									<span class="top">encourage</span>
+									<span class="top">all</span>
+									<span class="top">students</span>
+									<span class="top">to</span>
+									<span class="top">volunteer</span>
+									<span class="top">for</span>
+									<span class="top">at</span>
+									<span class="top">least</span>
+									<span class="top">one</span>
+									<span class="top">community</span>
+									<span class="top">activity</span>
+									<span class="top">before</span>
+									<span class="top">they</span>
+									<span class="top">graduate</span>.
+								</p>
+								<div class="training-answer js-zhongdudaan">
 									<h2 class="training-title">参考答案</h2>
 									<p class="training-already">We
 										<span class="tag"></span>
@@ -758,577 +642,15 @@
 											<span class="leftline">te</span>&nbsp;</span>.</p>
 								</div>
 							</div>
-							<div class="training-step">
-								<p data-num="2" data-questid="9301_3">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">A</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">new</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">community</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">program</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">called</span> "
-									<span class="top" data-toggle="showstress" data-original-title="" title="">One</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">On</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">One</span>"
-									<span class="top" data-toggle="showstress" data-original-title="" title="">helps</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">elementary</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">students</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">who</span>'
-									<span class="top" data-toggle="showstress" data-original-title="" title="">ve</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">fallen</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">behind</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">A
-										<span class="top">new</span>
-										<span class="top">community</span>
-										<span class="top">program</span> calle
-										<span class="leftline">d</span>&nbsp;"
-										<span class="top">O
-											<span class="red">ne</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">O</span>n
-										<span class="top">One</span>"
-										<span class="top">help
-											<span class="red">s</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">e</span>lementary</span>
-										<span class="top">students</span> who'
-										<span class="red">ve</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">f</span>allen</span>
-										<span class="top">behin
-											<span class="leftline">d</span>&nbsp;</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-								<p data-num="3" data-questid="9301_4">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">You</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">education</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">majors</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">might</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">be</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">especially</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">interested</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">in</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">it</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">because</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">it</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">offers</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">the</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">opportunity</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">to</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">do</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">some</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">teaching</span> —
-									<span class="top" data-toggle="showstress" data-original-title="" title="">that</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">is</span>,
-									<span class="top" data-toggle="showstress" data-original-title="" title="">tutoring</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">in</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">math</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">and</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">English</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">You
-										<span class="tag"></span>
-										<span class="top">education</span>
-										<span class="top">majors</span>
-										<span class="top">migh
-											<span class="leftline">t</span>&nbsp;</span>be
-										<span class="tag"></span>
-										<span class="top">especially</span>
-										<span class="tag"></span>
-										<span class="top">intereste
-											<span class="red">d</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">i</span>
-										<span class="red">n</span>
-										<span class="connect"> </span>
-										<span class="red">i</span>
-										<span class="leftline">t</span>&nbsp;
-										<span class="top">becau
-											<span class="red">se</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">i</span>
-										<span class="red">t</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">o</span>ffers</span> the
-										<span class="tag"></span>
-										<span class="top">opportunity</span> to
-										<span class="top">do</span> some
-										<span class="top">teaching</span> —
-										<span class="top">tha
-											<span class="red">t</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">i</span>s</span>,
-										<span class="top">tutori
-											<span class="red">ng</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">i</span>n
-										<span class="top">ma
-											<span class="red">th</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>n
-										<span class="red">d</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">E</span>nglish</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-								<p data-num="4" data-questid="9301_5">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">You</span>'
-									<span class="top" data-toggle="showstress" data-original-title="" title="">d</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">have</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">to</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">volunteer</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">two</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">hours</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">a</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">week</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">for</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">one</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">semester</span>.
-									<span class="top" data-toggle="showstress" data-original-title="" title="">You</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">can</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">choose</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">to</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">help</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">a</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">child</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">with</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">math</span>,
-									<span class="top" data-toggle="showstress" data-original-title="" title="">English</span>,
-									<span class="top" data-toggle="showstress" data-original-title="" title="">or</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">both</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">You'd
-										<span class="top">&nbsp;
-											<span class="rightline">h</span>ave</span> to
-										<span class="top">volunteer</span>
-										<span class="top">two</span>
-										<span class="tag"></span>
-										<span class="top">hour
-											<span class="red">s</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>
-										<span class="top">wee
-											<span class="leftline">k</span>&nbsp;</span>for
-										<span class="top">one</span>
-										<span class="top">semester</span>. You can
-										<span class="top">choose</span> to
-										<span class="top">hel
-											<span class="red">p</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>
-										<span class="top">chil
-											<span class="leftline">d</span>&nbsp;</span>with
-										<span class="top">math</span>,
-										<span class="top">English</span>, or
-										<span class="top">both</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-								<p data-num="5" data-questid="9301_6">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">Half</span>-
-									<span class="top" data-toggle="showstress" data-original-title="" title="">hour</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">lessons</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">are</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">fine</span>,
-									<span class="top" data-toggle="showstress" data-original-title="" title="">so</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">you</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">could</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">do</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">a</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">half</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">hour</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">of</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">each</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">subject</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">two</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">days</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">a</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">week</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">
-										<span class="top">Half-hour</span>
-										<span class="top">lesson
-											<span class="red">s</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>re
-										<span class="top">fine</span>, so you
-										<span class="top">coul
-											<span class="red">d</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">d</span>o</span>
-										<span class="tag"></span> a
-										<span class="top">hal
-											<span class="red">f</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">hou</span>
-											<span class="red">r</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">o</span>
-										<span class="red">f</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">ea</span>ch</span>
-										<span class="top">subjec
-											<span class="red">t</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">t</span>wo</span>
-										<span class="top">day
-											<span class="red">s</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>
-										<span class="top">wee
-											<span class="leftline">k</span>&nbsp;</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-								<p data-num="6" data-questid="9301_7">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">Professor</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">Dodge</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">will</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">act</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">as</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">a</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">mentor</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">to</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">the</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">tutors</span> —
-									<span class="top" data-toggle="showstress" data-original-title="" title="">he</span>'
-									<span class="top" data-toggle="showstress" data-original-title="" title="">ll</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">be</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">available</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">to</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">help</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">you</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">with</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">lesson</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">plans</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">or</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">to</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">offer</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">suggestions</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">for</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">activities</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">
-										<span class="top">Professor</span>
-										<span class="top">Dodge</span> wi
-										<span class="red">ll</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">a</span>c
-											<span class="red">t</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>
-										<span class="red">s</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>
-										<span class="top">mentor</span> to the
-										<span class="top">tutors</span> — he'll be
-										<span class="tag"></span>
-										<span class="top">available</span> to
-										<span class="top">hel
-											<span class="red">p</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">y</span>ou with
-										<span class="top">lesson</span>
-										<span class="top">plan
-											<span class="red">s</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">o</span>r to
-										<span class="tag"></span>
-										<span class="top">offer</span>
-										<span class="top">suggestions</span> fo
-										<span class="red">r</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">a</span>ctivities</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-								<p data-num="7" data-questid="9301_8">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">He</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">has</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">office</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">hours</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">every</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">Tuesday</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">and</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">Thursday</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">afternoon</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">He ha
-										<span class="red">s</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">o</span>ffi
-											<span class="red">ce</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">hou</span>r
-											<span class="red">s</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">e</span>very</span>
-										<span class="top">Tuesday</span>
-										<span class="tag"></span> an
-										<span class="leftline">d</span>&nbsp;
-										<span class="top">Thursday</span>
-										<span class="tag"></span>
-										<span class="top">afternoon</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-								<p data-num="8" data-questid="9301_9">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">You</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">can</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">sign</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">up</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">for</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">the</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">program</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">with</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">him</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">and</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">begin</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">the</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">tutoring</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">next</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">week</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">You can
-										<span class="top">sig
-											<span class="red">n</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">u</span>
-											<span class="leftline">p</span>&nbsp;</span>for the
-										<span class="top">program</span> with&nbsp;
-										<span class="rightline">h</span>i
-										<span class="red">m</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>n
-										<span class="leftline">d</span>&nbsp;
-										<span class="top">begin</span> the
-										<span class="top">tutoring</span>
-										<span class="top">nex
-											<span class="leftline">t</span>&nbsp;</span>
-										<span class="top">wee
-											<span class="leftline">k</span>&nbsp;</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-								<p data-num="9" data-questid="9301_10">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">I</span>'
-									<span class="top" data-toggle="showstress" data-original-title="" title="">m</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">sure</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">you</span>'
-									<span class="top" data-toggle="showstress" data-original-title="" title="">ll</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">enjoy</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">this</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">community</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">service</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">and</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">you</span>'
-									<span class="top" data-toggle="showstress" data-original-title="" title="">ll</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">gain</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">valuable</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">experience</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">at</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">the</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">same</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">time</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">I'm
-										<span class="top">sure</span> you'
-										<span class="red">ll</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">e</span>njoy</span> this
-										<span class="top">community</span>
-										<span class="top">service</span> an
-										<span class="leftline">d</span>&nbsp;you'll
-										<span class="top">gain</span>
-										<span class="top">valuab
-											<span class="red">le</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">e</span>xperien
-											<span class="red">ce</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>
-										<span class="leftline">t</span>&nbsp;the
-										<span class="top">same</span>
-										<span class="top">time</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-								<p data-num="10" data-questid="9301_11">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">It</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">looks</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">good</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">on</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">your</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">resume</span>,
-									<span class="top" data-toggle="showstress" data-original-title="" title="">too</span>,
-									<span class="top" data-toggle="showstress" data-original-title="" title="">showing</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">that</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">you</span>'
-									<span class="top" data-toggle="showstress" data-original-title="" title="">ve</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">had</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">experience</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">with</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">children</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">and</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">that</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">you</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">care</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">about</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">your</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">community</span>.</p>
-								<div class="training-answer">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">I
-										<span class="leftline">t</span>&nbsp;
-										<span class="top">looks</span>
-										<span class="top">goo
-											<span class="red">d</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">o</span>n you
-										<span class="red">r</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">r</span>esume</span>,
-										<span class="top">too</span>,
-										<span class="top">showing</span> tha
-										<span class="leftline">t</span>&nbsp;you've ha
-										<span class="red">d</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">e</span>xperience</span> with
-										<span class="top">childre
-											<span class="red">n</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="red">a</span>n
-										<span class="leftline">d</span>&nbsp;tha
-										<span class="leftline">t</span>&nbsp;you
-										<span class="top">ca
-											<span class="red">re</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">a</span>bou
-											<span class="leftline">t</span>&nbsp;</span>your
-										<span class="top">community</span>.</p>
-								</div>
-							</div>
-							<div class="training-step">
-								<p data-num="11" data-questid="9301_12">
-									<span class="top" data-toggle="showstress" data-original-title="" title="">If</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">you</span>'
-									<span class="top" data-toggle="showstress" data-original-title="" title="">d</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">like</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">to</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">sign</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">up</span>,
-									<span class="top" data-toggle="showstress" data-original-title="" title="">or</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">if</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">you</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">have</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">any</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">questions</span>,
-									<span class="top" data-toggle="showstress" data-original-title="" title="">stop</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">by</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">Professor</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">Dodge</span>'
-									<span class="top" data-toggle="showstress" data-original-title="" title="">s</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">office</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">this</span>
-									<span class="top" data-toggle="showstress" data-original-title="" title="">week</span>.</p>
-								<div class="training-answer training-answer-last">
-									<h2 class="training-title">参考答案</h2>
-									<p class="training-already">If you'
-										<span class="leftline">d</span>&nbsp;
-										<span class="top">li
-											<span class="leftline">ke</span>&nbsp;</span>to
-										<span class="top">sig
-											<span class="red">n</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">u</span>
-											<span class="leftline">p</span>&nbsp;</span>, o
-										<span class="red">r</span>
-										<span class="connect"> </span>
-										<span class="red">i</span>f you ha
-										<span class="red">ve</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">a</span>ny</span>
-										<span class="top">questions</span>,
-										<span class="top">sto
-											<span class="leftline">p</span>&nbsp;</span>by
-										<span class="top">Professor</span>
-										<span class="top">Dodge'
-											<span class="red">s</span>
-										</span>
-										<span class="connect"> </span>
-										<span class="top">
-											<span class="red">o</span>ffice</span> this
-										<span class="top">wee
-											<span class="leftline">k</span>&nbsp;</span>.</p>
-								</div>
-							</div>
 							<div class="step-answer" data-step="3">
-								<span class="btn answer">查看答案</span>
+								<span class="btn answer btn-ok" id="zhongdu_chakan">查看答案</span>
 							</div>
 							<div class="step-btns training-next j-training-btn-box" style="display:none;">
-								<span class="btn btn-next">下一步</span>
+								<span class="btn btn-next btn-ok" id="zhongdu-next">下一步</span>
 							</div>
 						</div>
 						<!-- 跟读训练第三步-->
-						<div class="grade-content j-training-step">
+						<div class="grade-content j-training-step" style="display: none;">
 							<div class="grade-list">
 								<ul>
 									<li class="grade-select">初级跟读</li>
@@ -1350,59 +672,26 @@
 									<b>不限次数</b>。</p>
 							</div>
 							<!-- 初级 -->
-							<div class="grade-box grade-box-step" style="display: none;">
+							<div class="grade-box grade-box-step">
 								<div class="grade-left">
-
 									<div class="grade-step">
-										<i class="voice-step"></i>
+										<i class="voice-step">
+											<audio preload="preload" src="images/audio1.mp3"></audio>
+										</i>
 										<p class="training-already">
-											<span class="top ">Community</span>
-											<span class="top">servi
-												<span class="red">ce</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">i</span>
-											<span class="red">s</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">a</span>
-											<span class="red">n</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">i</span>mportan
-												<span class="leftline">t</span>&nbsp;</span>
-											<span class="top">componen
-												<span class="red">t</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">o</span>
-											<span class="red">f</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">e</span>ducation</span> he
-											<span class="red">re</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">a</span>
-											<span class="red">t</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">our</span>
-											<span class="top">university</span>.</p>
+											连续：kkk <span class="red">d<i class='tag_lianxu'></i>d</span>kk <br/>	
+
+												失爆：bbb <span><i class='tag_right'></i></span>bbb <br/>
+												J:CCCCCC<span><i class='tag_j'></i></span>bbb <br/>
+												  
+												叠合:DDDDDD <span><i class='tag_diehe'></i></span>bbb <br/>
+												击穿:EEEEEEEE <span><i class='tag_left'></i></span>bbb <br/>
+												W:EEEEEEEE <span><i class='tag_w'></i></span>bbb <br/>
 									</div>
 									<div class="grade-step">
-										<i class="voice-step"></i>
+										<i class="voice-step">
+											<audio preload="preload" src="images/audio1.mp3"></audio>
+										</i>
 										<p class="training-already">
 											<span class="top">Half-hour</span>
 											<span class="top">lesson
@@ -1461,7 +750,9 @@
 												<span class="leftline">k</span>&nbsp;</span>.</p>
 									</div>
 									<div class="grade-step">
-										<i class="voice-step"></i>
+										<i class="voice-step">
+											<audio preload="preload" src="images/audio1.mp3"></audio>
+										</i>
 										<p class="training-already">
 											<span class="top">Professor</span>
 											<span class="top">Dodge</span> wi
@@ -1511,183 +802,7 @@
 											<span class="top">
 												<span class="red">a</span>ctivities</span>.</p>
 									</div>
-									<div class="grade-step">
-										<i class="voice-step"></i>
-										<p class="training-already">He ha
-											<span class="red">s</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">o</span>ffi
-												<span class="red">ce</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">hou</span>r
-												<span class="red">s</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">e</span>very</span>
-											<span class="top">Tuesday</span>
-											<span class="tag tag-j"></span> an
-											<span class="leftline">d</span>&nbsp;
-											<span class="top">Thursday</span>
-											<span class="tag tag-j"></span>
-											<span class="top">afternoon</span>.</p>
-									</div>
-									<div class="grade-step">
-										<i class="voice-step"></i>
-										<p class="training-already">You can
-											<span class="top">sig
-												<span class="red">n</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">u</span>
-												<span class="leftline">p</span>&nbsp;</span>for the
-											<span class="top">program</span> with&nbsp;
-											<span class="rightline">h</span>i
-											<span class="red">m</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">a</span>n
-											<span class="leftline">d</span>&nbsp;
-											<span class="top">begin</span> the
-											<span class="top">tutoring</span>
-											<span class="top">nex
-												<span class="leftline">t</span>&nbsp;</span>
-											<span class="top">wee
-												<span class="leftline">k</span>&nbsp;</span>.</p>
-									</div>
-									<div class="grade-step">
-										<i class="voice-step"></i>
-										<p class="training-already">I'm
-											<span class="top">sure</span> you'
-											<span class="red">ll</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">e</span>njoy</span> this
-											<span class="top">community</span>
-											<span class="top">service</span> an
-											<span class="leftline">d</span>&nbsp;you'll
-											<span class="top">gain</span>
-											<span class="top">valuab
-												<span class="red">le</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">e</span>xperien
-												<span class="red">ce</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">a</span>
-											<span class="leftline">t</span>&nbsp;the
-											<span class="top">same</span>
-											<span class="top">time</span>.</p>
-									</div>
-									<div class="grade-step">
-										<i class="voice-step"></i>
-										<p class="training-already">I
-											<span class="leftline">t</span>&nbsp;
-											<span class="top">looks</span>
-											<span class="top">goo
-												<span class="red">d</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">o</span>n you
-											<span class="red">r</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">r</span>esume</span>,
-											<span class="top">too</span>,
-											<span class="top">showing</span> tha
-											<span class="leftline">t</span>&nbsp;you've ha
-											<span class="red">d</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">e</span>xperience</span> with
-											<span class="top">childre
-												<span class="red">n</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">a</span>n
-											<span class="leftline">d</span>&nbsp;tha
-											<span class="leftline">t</span>&nbsp;you
-											<span class="top">ca
-												<span class="red">re</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">a</span>bou
-												<span class="leftline">t</span>&nbsp;</span>your
-											<span class="top">community</span>.</p>
-									</div>
-									<div class="grade-step">
-										<i class="voice-step"></i>
-										<p class="training-already">If you'
-											<span class="leftline">d</span>&nbsp;
-											<span class="top">li
-												<span class="leftline">ke</span>&nbsp;</span>to
-											<span class="top">sig
-												<span class="red">n</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">u</span>
-												<span class="leftline">p</span>&nbsp;</span>, o
-											<span class="red">r</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="red">i</span>f you ha
-											<span class="red">ve</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">a</span>ny</span>
-											<span class="top">questions</span>,
-											<span class="top">sto
-												<span class="leftline">p</span>&nbsp;</span>by
-											<span class="top">Professor</span>
-											<span class="top">Dodge'
-												<span class="red">s</span>
-											</span>
-											<span class="connect link">
-												<i></i>
-											</span>
-											<span class="top">
-												<span class="red">o</span>ffice</span> this
-											<span class="top">wee
-												<span class="leftline">k</span>&nbsp;</span>.</p>
-									</div>
+
 								</div>
 								<div class="grade-right">
 									<div id="wordlist2">
@@ -1706,135 +821,66 @@
 											<div class="wordNote">
 												<ul class="wordNoteList">
 													<li>
-														<div class="contentCollapse  listElement" data-original-title="" title="">导读顶顶顶顶多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多</div>
+														<div class="contentCollapse  listElement" title="">导读顶顶顶顶多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多</div>
 														<div class="listElement listElement_new"></div>
-														<!-- <div class="listElement">
-						
-															<label data-act="editItem" class="editItem">编辑</label>
-																<i class="divide"></i>
-																<label data-act="deleteItem" class="deleteItem">删除</label>
-															</div> -->
+
 													</li>
 													<li>
 														<div class="listElement">sdfsd</div>
 														<div class="listElement listElement_new">fsdfsd</div>
-														<!-- <div class="listElement">
-																<label data-act="editItem" class="editItem">编辑</label>
-																<i class="divide"></i>
-																<label data-act="deleteItem" class="deleteItem">删除</label>
-															</div> -->
+
 													</li>
 													<li>
 														<div class="listElement"></div>
 														<div class="listElement listElement_new"></div>
-														<!-- <div class="listElement">
-																<label data-act="editItem" class="editItem">编辑</label>
-																<i class="divide"></i>
-																<label data-act="deleteItem" class="deleteItem">删除</label>
-															</div> -->
+
 													</li>
 													<li>
 														<div class="listElement">大萨达所</div>
 														<div class="listElement listElement_new"></div>
-														<!-- <div class="listElement">
-																<label data-act="editItem" class="editItem">编辑</label>
-																<i class="divide"></i>
-																<label data-act="deleteItem" class="deleteItem">删除</label>
-															</div> -->
+
 													</li>
 													<li>
-														<div class="contentCollapse  listElement" data-original-title="" title="">das是是是是是是所所所所所所所所所所所所所</div>
-														<div class="contentCollapse listElement listElement_new" data-original-title="" title="">阿诗丹顿多多多多多多多多多多多多多多多多多多多多</div>
-														<!-- <div class="listElement">
-																<label data-act="editItem" class="editItem">编辑</label>
-																<i class="divide"></i>
-																<label data-act="deleteItem" class="deleteItem">删除</label>
-															</div> -->
+														<div class="contentCollapse  listElement" title="">das是是是是是是所所所所所所所所所所所所所</div>
+														<div class="contentCollapse listElement listElement_new" title="">阿诗丹顿多多多多多多多多多多多多多多多多多多多多</div>
+
 													</li>
 													<li>
 														<div class="listElement">啊实打实</div>
 														<div class="listElement listElement_new">阿斯达大所大是</div>
-														<!-- <div class="listElement">
-																<label data-act="editItem" class="editItem">编辑</label>
-																<i class="divide"></i>
-																<label data-act="deleteItem" class="deleteItem">删除</label>
-															</div> -->
+
 													</li>
 												</ul>
 
 											</div>
-
-											<!--<div class="wrapper_wordlist" style="margin-left: -200px; margin-top: -200px; width: 400px; height: 400px;">
-									<div class="titleBar" style="height:40px;text-align:center;line-height:40px;">
-										添加单词
-									</div>
-						
-								</div>-->
-											<!-- 增删改查 -->
-											<!-- <div id="add_word" class="hide-element">
-													<div class="dialog">
-														<div class="wordAdding">
-															<p class="modal_label">单词</p>
-															<input type="text" class="wordlistInp">
-														</div>
-														<div>
-															<p class="modal_label">释义</p>
-															<textarea class="wordlistTextarea"></textarea>
-														</div>
-														<div class="wordlist-oper">
-															<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist" data-act="confirm">
-															<input type="button" value="取消" class="btn btn-wordlist  " data-act="cancel">
-														</div>
-													</div>
-												</div> -->
-
-											<!-- <div id="edit_word" class="hide-element">
-													<div class="dialog">
-														<div>
-															<textarea class="wordlistTextarea"></textarea>
-														</div>
-														<div class="wordlist-oper">
-															<input type="button" value="保存修改" class="btn btn-wordlist-lg confirm-wordlist" data-act="confirm">
-															<input type="button" value="取消" class="btn btn-wordlist-lg  " data-act="cancel">
-														</div>
-													</div>
-												</div> -->
-
-											<!-- <div id="delete_word" class="hide-element">
-													<div class="dialog">
-														<p class="delTip">
-															是否确认删除单词？
-														</p>
-														<div class="wordlist-oper">
-															<input type="button" value="确认" class="btn btn-wordlist confirm-wordlist" data-act="confirm">
-															<input type="button" value="取消" class="btn btn-wordlist  " data-act="cancel">
-														</div>
-													</div>
-												</div> -->
 
 										</div>
 
 									</div>
 								</div>
 								<div class="step-btns u-btn-box j-grade-btn-box">
-									<span class="btn btn-next grade-btn-next">下一步</span>
+									<span class="btn grade-btn-next btn-ok" id="grade-btn">下一步</span>
 								</div>
 							</div>
 							<!--中级-->
 							<div class="grade-middle-box grade-box-step" style="display: none;">
+								<audio preload="preload" class="grade_middle_audio">
+									<source src="../images/audio1.mp3" type="audio/mp3">
+								</audio>
 								<div class="prototype-wrapper">
 									<div class="jp_container_1-box">
 										<div class="jp_container_1">
-											<div class="jp-current-time-new">00:00</div>
+											<p class="timeline grade_middle_timeline">
+												<span></span>
+											</p>
+											<div class="jp-current-time-new js-middle-duration">00:00</div>
 											/
-											<div class="jp-duration-new">01:12</div>
+											<div class="jp-duration-new js-middle-current-time">00:00</div>
 										</div>
 									</div>
 									<!-- 听力图标 -->
 									<div class="play-progress">
-
-										<div class="play-shader"></div>
-										<div class="playinghorn"></div>
+										<div class="playinghorn" id="grade_middle_btn"></div>
 									</div>
 								</div>
 								<div class="grade-middle-step">
@@ -1861,43 +907,38 @@
 									</p>
 								</div>
 								<div class="step-btns u-btn-box j-grade-btn-box">
-									<span class="btn btn-next grade-btn-next">下一步</span>
+									<span class="btn grade-btn-next btn-ok grade_middle_next">下一步</span>
 								</div>
 							</div>
 							<!--高级-->
-							<div class="grade-high-box grade-box-step">
+							<div class="grade-high-box grade-box-step" style="display: none;">
+								<audio preload="preload" class="grade_high_audio">
+									<source src="../images/audio1.mp3" type="audio/mp3">
+								</audio>
 								<div class="prototype-wrapper">
 									<div class="jp_container_1-box">
 										<div class="jp_container_1">
-											<div class="jp-current-time-new">00:00</div>
+											<p class="timeline grade_high_timeline">
+												<span></span>
+											</p>
+											<div class="jp-current-time-new js-high-duration">00:00</div>
 											/
-											<div class="jp-duration-new">01:12</div>
+											<div class="jp-duration-new js-high-current-time">00:00</div>
 										</div>
 									</div>
 									<!-- A wrapper to emulate use in a webpage and center align -->
 									<div class="play-progress">
-										<div class="play-left-box">
-											<div class="play-left" style="transform: rotate(-45deg);"></div>
-										</div>
-										<div class="play-right-box">
-											<div class="play-right" style="transform: rotate(135deg);"></div>
-										</div>
-										<div class="indicator-relative" style="transform: rotate(0deg);">
-											<div class="indicator indicator-new"></div>
-										</div>
-										<div class="play-shader"></div>
-										<div class="stophorn"></div>
-										<div class="playinghorn"></div>
+										<div class="playinghorn" id="grade_high_btn"></div>
 									</div>
 								</div>
 								<div class="step-btns u-btn-box j-next-btn-box">
-									<span class="btn btn-next">下一步</span>
+									<span class="btn btn-ok" id="grade_high_next">下一步</span>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- 精听原文 -->
-					<div class="quietly-content content-step JsContent" style="display: none;">
+					<div class="quietly-content content-step JsContent" id="micro_listen" style="display: none;">
 						<div class="quietly-high-box">
 							<div class="content-tips">
 
@@ -1906,43 +947,117 @@
 									<b>完成</b>，精听次数没有上限。每一次播放过程中
 									<b>不能暂停</b>。</p>
 							</div>
+							<audio preload="preload" class="micro_audio">
+								<source src="../images/audio1.mp3" type="audio/mp3">
+							</audio>
 							<div class="prototype-wrapper">
 								<div class="jp_container_1-box quietly-jp_container_1-box">
 									<div class="jp_container_1">
-										<div class="jp-current-time-new">00:00</div>
+										<p class="timeline micro_timeline">
+											<span></span>
+										</p>
+										<div class="jp-current-time-new js-micro-duration">00:00</div>
 										/
-										<div class="jp-duration-new">01:12</div>
+										<div class="jp-duration-new js-micro-current-time">00:00</div>
 									</div>
 								</div>
 								<!-- A wrapper to emulate use in a webpage and center align -->
 								<div class="play-progress">
-									<div class="play-left-box">
-										<div class="play-left"></div>
-									</div>
-									<div class="play-right-box">
-										<div class="play-right"></div>
-									</div>
-									<div class="indicator-relative">
-										<div class="indicator indicator-new"></div>
-									</div>
-									<div class="play-shader"></div>
-									<div class="stophorn"></div>
-									<div class="playinghorn"></div>
+									<div class="playinghorn" id="micro_btn"></div>
 								</div>
 							</div>
 							<div class="quietly-listen-contain">
 								<div>
-									<span>0</span>
+									<span class="micro-degree">0</span>
 								</div>
 								<p>精听次数</p>
 							</div>
 						</div>
-						<!-- 开始灰色 20次以后黄色  -->
+						<!-- 开始灰色 20次以后蓝色  -->
 						<div class="step-btns step-btns-finished pattern1">
-							<span class="btn disabled">完成</span>
+							<span class="btn disabled" id="micro-wancheng">完成</span>
 							<a href="javascript:;" class="btn btn-backplan" style="display: none;">返回学习计划</a>
 						</div>
 
+					</div>
+				</div>
+				<!-- 点击跟读训练说明的弹窗 -->
+				<div id="fivestep-model" class="modal fade in">
+					<div class="modal-backdrop"></div>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="fivestep-model-close" data-dismiss="modal"></div>
+								<div class="title-nav">
+									<ul>
+										<li class="on" data-value="fuyin">辅音对元音连读</li>
+										<li class="" data-value="yuanyin">元音对元音连读</li>
+										<li class="" data-value="diehe">叠合</li>
+										<li class="" data-value="shibao">失爆</li>
+										<li class="" data-value="jichuang">击穿</li>
+										<li class="" data-value="stress">重读</li>
+									</ul>
+								</div>
+								<div class="details">
+									<div class="item fuyin" style="display: block;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>当前面的单词以辅音结尾，紧随其后的单词以元音开头，这时将前面的辅音同后面的元音连在一起，像是构成一个音节一样的读出来, 以使语言更具有流畅自然的特点.而且连读必须是发生在短语或句子的同一个意群中的, 在意群(及短语或从句)之间有停顿时,两个短语或两个从句间相邻的音不连读。</p>
+											<p>
+											</p>
+										</div>
+									</div>
+									<div class="item yuanyin" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p class="condition">元音对元音的连读实际上是在元音之间插入半元音[j]或[w], 从而使纯元音音节之间的过渡变得自然、流畅，读起来更加上口。半元音插入的情况如下：</p>
+											<p>
+											</p>
+											<p class="p1">前面的单词以元音[i:],[ei],[ai],[oi]或[i]结尾，紧随其后的单词以元音开头，这时，在两个单词之间出现半元音[j]作为过渡。</p>
+											<p class="p2">前面的单词以[u:][o]或[au]结尾，紧随其后的单词以元音开头，这时，在两个单词之间出现半元音[w]作为过渡。</p>
+										</div>
+
+									</div>
+									<div class="item diehe" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>即前面单词结尾辅音与紧随其后的单词的起始辅音为同一个音时，只需读一次，而不必将这个音读两次。这种情形常发生在[b], [p], [t], [k], [d], [g] 等辅音出现的时候。</p>
+										</div>
+
+									</div>
+									<div class="item shibao" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>顾名思义,指爆破音失去爆破。发生的条件如下：当前面的单词以[p][b][t][d][k][g]这六个爆破音中的任何一个结尾，而紧随其后的单词是以辅音开头的，这时前面单词中的爆破音失去爆破。读法是在发爆破音时只阻塞气流却不将之释放，说白了就是只作口型不发音。</p>
+										</div>
+
+									</div>
+									<div class="item jichuang" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>指声门摩擦音[h]出现在单词词首时，由于该单词不重读导致声门摩擦音[h]不发音的现象。</p>
+											<p class="condition">击穿发生的条件：</p>
+											<p class="p1">该单词是以[h]开头的，hour这个单词中字母h原本就不发音，所以这种情况不叫击穿。</p>
+											<p class="p2">该单词不出现在句首。</p>
+											<p class="p3">该单词在句子中不重读。</p>
+											<p class="zhu">注：</p>
+											<p class="p1">them这个单词在句子中会有缩读的情况，表现为省略了th的发音，如：leave them读作leave’em。这种情况不属于击穿。</p>
+											<p class="p2">并非前面的单词必须是辅音结尾才能击穿后面单词的[h]，前面单词结尾的元音如果是符合元音对元音连读规则中的元音，则在省去[h]的同时，在[h]音后面的元音前面按规则加半元音 [j] 或者 [w]，如：I have never
+												done this before这句话中，除了能使用I’ve 这种缩读之外，还可以读作I j’ave never done this before，再如：to him可以读作to w’im。</p>
+										</div>
+
+									</div>
+									<div class="item stress" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>在一个句子中，需重读的单词一般是实词，如名词、动词、形容词、副词、数词、代词等；虚词一般不重读，如冠词、连词、介词等。句子的重读可以增强句子的节奏感和韵律感，突出重点。句子的重读有时会因说话人的讲话情景不同而发生变化，有一定主观性；还需根据音频中重音的落点确认。</p>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<span class="modal-close venus_iconfont icon-close" data-act="close"></span>
+						</div>
 					</div>
 				</div>
 			</div>

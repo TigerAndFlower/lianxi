@@ -143,16 +143,6 @@
   z-index: 1;
   background-color: transparent;
 }
-.main .five-wrap .content .prototype-wrapper .play-progress .play-shader {
-  width: 230px;
-  height: 230px;
-  left: 5px;
-  top: 5px;
-  border-radius: 50%;
-  background-color: #fff;
-  z-index: 2;
-  position: absolute;
-}
 .main .five-wrap .content .prototype-wrapper .play-progress .playinghorn {
   width: 210px;
   height: 210px;
@@ -161,9 +151,22 @@
   z-index: 14;
   left: 15px;
   top: 16px;
+  z-index: 3;
   cursor: default;
   background: url(../images/Listening5Step.png) no-repeat;
   background-position: 5px -680px;
+}
+.main .five-wrap .content .prototype-wrapper .play-progress .playing {
+  background-position: 5px -215px;
+  animation: audio_playing 5s linear infinite;
+}
+@keyframes audio_playing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .main .five-wrap .content .step-btns {
   display: block;
@@ -606,13 +609,19 @@
 .main .five-wrap .content-step .step-btns .btn-ok {
   background-color: #27AEC2;
 }
+.main .five-wrap .content-step .training-tag{
+  position: relative;
+}
+
 .main .five-wrap .content-step .training-tag .training-step {
   font-size: 16px;
   color: #36434d;
   line-height: 26px;
   padding-top: 25px;
+  
 }
 .main .five-wrap .content-step .training-tag .training-step span {
+  font-size: 16px;
   position: relative;
 }
 .main .five-wrap .content-step .training-tag .training-step > p {
@@ -620,6 +629,7 @@
   padding-left: 25px;
   font-size: 16px;
   color: #36434d;
+  font-size: 0px;
   line-height: 26px;
 }
 .main .five-wrap .content-step .training-tag .training-step > p::before {
@@ -633,89 +643,19 @@
   left: 0;
   top: 4px;
 }
-.main .five-wrap .content-step .training-tag .training-step > p i {
-  display: inline-block;
-  background: url(../images/Listening5Step.png) no-repeat;
-  background-position: 0 -500px;
-  width: 18px;
-  height: 15px;
-  border: none;
-  vertical-align: middle;
-}
-.main .five-wrap .content-step .training-tag .training-step > p .red {
-  color: #ffac00;
-}
-.main .five-wrap .content-step .training-tag .training-step .training-answer {
+ .training-step .training-answer {
   padding-bottom: 25px;
   border-bottom: 1px solid #ccc;
   padding-left: 25px;
+  display: none;
 }
-.main .five-wrap .content-step .training-tag .training-step .training-answer .training-title {
+.training-step .training-answer .training-title {
   padding: 15px 0 4px 0;
   font-size: 16px;
   line-height: 20px;
   font-weight: bold;
 }
-.main .five-wrap .content-step .training-tag .training-step .training-answer .training-already .red {
-  color: #ffac00;
-}
-.main .five-wrap .content-step .training-tag .training-step .training-answer .connect i {
-  background: url(../images/Listening5Step.png) no-repeat;
-  background-position: 1px -530px;
-  position: absolute;
-  width: 20px;
-  height: 10px;
-  left: -7px;
-  top: 18px;
-  display: inline-block;
-  vertical-align: middle;
-}
-.main .five-wrap .content-step .training-tag .training-step .training-answer .leftline::after {
-  display: block;
-  content: " ";
-  font-size: 16px;
-  position: absolute;
-  width: 1px;
-  height: 16px;
-  border: 1px solid #ffac00;
-  left: 2px;
-  top: 0;
-  -webkit-transform: rotate(-20deg);
-  -moz-transform: rotate(-20deg);
-  -ms-transform: rotate(-20deg);
-  -o-transform: rotate(-20deg);
-  transform: rotate(-20deg);
-}
-.main .five-wrap .content-step .training-tag .training-step .training-answer .tag-j::after {
-  background: url(../images/Listening5Step.png) no-repeat;
-  background-position: 0 -540px;
-  display: inline-block;
-  content: " ";
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-}
-.main .five-wrap .content-step .training-tag .training-step .training-answer .rightline::after {
-  transform: rotate(20deg);
-  display: block;
-  content: " ";
-  font-size: 16px;
-  position: absolute;
-  width: 1px;
-  height: 16px;
-  border: 1px solid #ffac00;
-  left: 2px;
-  top: 0;
-}
-.main .five-wrap .content-step .training-tag .training-step .training-answer .tag-w::after {
-  display: inline-block;
-  content: " ";
-  background: url(../images/Listening5Step.png) no-repeat;
-  background-position: 0 -560px;
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-}
+
 .main .five-wrap .content-step .training-tag .step-answer,
 .main .five-wrap .content-step .training-tag .step-btns-tag {
   margin-top: 60px;
@@ -780,14 +720,12 @@
   padding-bottom: 25px;
   border-bottom: 1px solid #ccc;
   padding-left: 25px;
+  display: none;
 }
 .main .five-wrap .content-step .training-stress .training-step .training-answer .training-title {
   padding: 15px 0 4px 0;
   font-size: 16px;
   line-height: 20px;
-  font-weight: bold;
-}
-.main .five-wrap .content-step .training-stress .training-step .repetition {
   font-weight: bold;
 }
 .main .five-wrap .content-step .grade-content {
@@ -851,7 +789,7 @@
   padding-right: 30px;
   position: relative;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-left .grade-step i {
+.main .five-wrap .content-step .grade-content .grade-box .grade-left .grade-step .voice-step {
   background: url(../images/wbjt1.png) no-repeat;
   width: 40px;
   height: 38px;
@@ -865,69 +803,7 @@
   padding-top: 16px;
   position: relative;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-left .grade-step .training-already .top {
-  font-weight: bold;
-}
-.main .five-wrap .content-step .grade-content .grade-box .grade-left .grade-step .training-already .red {
-  color: #ffac00;
-}
-.main .five-wrap .content-step .grade-content .grade-box .grade-left .grade-step .training-already .connect i {
-  background: url(../images/Listening5Step.png) no-repeat;
-  background-position: 1px -530px;
-  position: absolute;
-  width: 20px;
-  height: 10px;
-  left: -7px;
-  top: 18px;
-  display: inline-block;
-  vertical-align: middle;
-}
-.main .five-wrap .content-step .grade-content .grade-box .grade-left .grade-step .training-already .leftline::after {
-  display: block;
-  content: " ";
-  font-size: 16px;
-  position: absolute;
-  width: 1px;
-  height: 16px;
-  border: 1px solid #ffac00;
-  left: 2px;
-  top: 0;
-  -webkit-transform: rotate(-20deg);
-  -moz-transform: rotate(-20deg);
-  -ms-transform: rotate(-20deg);
-  -o-transform: rotate(-20deg);
-  transform: rotate(-20deg);
-}
-.main .five-wrap .content-step .grade-content .grade-box .grade-left .grade-step .training-already .tag-j::after {
-  background: url(../images/Listening5Step.png) no-repeat;
-  background-position: 0 -540px;
-  display: inline-block;
-  content: " ";
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-}
-.main .five-wrap .content-step .grade-content .grade-box .grade-left .grade-step .training-already .rightline::after {
-  transform: rotate(20deg);
-  display: block;
-  content: " ";
-  font-size: 16px;
-  position: absolute;
-  width: 1px;
-  height: 16px;
-  border: 1px solid #ffac00;
-  left: 2px;
-  top: 0;
-}
-.main .five-wrap .content-step .grade-content .grade-box .grade-left .grade-step .training-already .tag-w::after {
-  display: inline-block;
-  content: " ";
-  background: url(../images/Listening5Step.png) no-repeat;
-  background-position: 0 -560px;
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-}
+
 .main .five-wrap .content-step .grade-content .grade-box .grade-right {
   position: relative;
   display: table-cell;
@@ -938,38 +814,38 @@
   padding-top: 38px;
   vertical-align: top;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 {
   width: 509px;
   overflow-x: hidden;
   overflow-y: scroll;
   height: 626px;
   border: 1px solid #ccc;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .gradient {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .gradient {
   background: -webkit-linear-gradient(45deg, #fc9c43, #eb6c06);
   color: #fff;
   height: 52px;
   font-weight: bold;
   line-height: 52px;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .gradient div {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .gradient div {
   height: 100%;
   float: left;
   text-align: left;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .gradient div:nth-child(1) {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .gradient div:nth-child(1) {
   width: 30%;
   padding-left: 20px;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .gradient div:nth-child(2) {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .gradient div:nth-child(2) {
   width: 45%;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .noWord {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .noWord {
   overflow: hidden;
   margin-top: 50px;
   display: none;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .noWord .addIcon {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .noWord .addIcon {
   width: 60px;
   height: 50px;
   background-image: url(../images/wordlist.png);
@@ -977,22 +853,22 @@
   margin: 0 auto;
   padding-bottom: 30px;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .noWord p {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .noWord p {
   text-align: center;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .wordNote {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .wordNote {
   overflow: hidden;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .wordNote .wordNoteList {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .wordNote .wordNoteList {
   overflow: hidden;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .wordNote .wordNoteList li {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .wordNote .wordNoteList li {
   height: 52px;
   width: 100%;
   font-size: 16px;
   border-bottom: 1px solid #ccc;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .wordNote .wordNoteList li div {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .wordNote .wordNoteList li div {
   float: left;
   text-align: left;
   height: 100%;
@@ -1001,11 +877,11 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .wordNote .wordNoteList li div:nth-child(1) {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .wordNote .wordNoteList li div:nth-child(1) {
   width: 30%;
   padding-left: 20px;
 }
-.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist .wordNote .wordNoteList li div:nth-child(2) {
+.main .five-wrap .content-step .grade-content .grade-box .grade-right #wordlist2 .wordNote .wordNoteList li div:nth-child(2) {
   width: 45%;
 }
 .main .five-wrap .content-step .grade-content .grade-middle-box {
@@ -1039,16 +915,6 @@
   z-index: 1;
   background-color: transparent;
 }
-.main .five-wrap .content-step .grade-content .grade-middle-box .prototype-wrapper .play-progress .play-shader {
-  width: 230px;
-  height: 230px;
-  left: 5px;
-  top: 5px;
-  border-radius: 50%;
-  background-color: #fff;
-  z-index: 2;
-  position: absolute;
-}
 .main .five-wrap .content-step .grade-content .grade-middle-box .prototype-wrapper .play-progress .playinghorn {
   width: 210px;
   height: 210px;
@@ -1059,10 +925,22 @@
   top: 16px;
   cursor: default;
   background: url(../images/Listening5Step.png) no-repeat;
+  background-position: 5px -680px;
+}
+.main .five-wrap .content-step .grade-content .grade-middle-box .prototype-wrapper .play-progress .playing {
   background-position: 5px -215px;
+  animation: audio_playing 5s linear infinite;
+}
+@keyframes audio_playing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .main .five-wrap .content-step .grade-content .grade-middle-box .grade-middle-step {
-  padding-top: 25px;
+  padding-top: 50px;
   padding-bottom: 5px;
 }
 .main .five-wrap .content-step .grade-content .grade-middle-box .grade-middle-step p {
@@ -1129,16 +1007,6 @@
   z-index: 1;
   background-color: transparent;
 }
-.main .five-wrap .content-step .grade-content .grade-high-box .prototype-wrapper .play-progress .play-shader {
-  width: 230px;
-  height: 230px;
-  left: 5px;
-  top: 5px;
-  border-radius: 50%;
-  background-color: #fff;
-  z-index: 2;
-  position: absolute;
-}
 .main .five-wrap .content-step .grade-content .grade-high-box .prototype-wrapper .play-progress .playinghorn {
   width: 210px;
   height: 210px;
@@ -1148,7 +1016,20 @@
   left: 15px;
   top: 16px;
   cursor: default;
-  background: url(../images/readyPlay.png) no-repeat;
+  background: url(../images/Listening5Step.png) no-repeat;
+  background-position: 5px -680px;
+}
+.main .five-wrap .content-step .grade-content .grade-high-box .prototype-wrapper .play-progress .playing {
+  background-position: 5px -215px;
+  animation: audio_playing 5s linear infinite;
+}
+@keyframes audio_playing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .main .five-wrap .quietly-content {
   overflow: hidden;
@@ -1193,16 +1074,6 @@
   z-index: 1;
   background-color: transparent;
 }
-.main .five-wrap .quietly-content .prototype-wrapper .play-progress .play-shader {
-  width: 230px;
-  height: 230px;
-  left: 5px;
-  top: 5px;
-  border-radius: 50%;
-  background-color: #fff;
-  z-index: 2;
-  position: absolute;
-}
 .main .five-wrap .quietly-content .prototype-wrapper .play-progress .playinghorn {
   width: 210px;
   height: 210px;
@@ -1212,7 +1083,20 @@
   left: 15px;
   top: 16px;
   cursor: default;
-  background: url(../images/readyPlay.png) no-repeat;
+  background: url(../images/Listening5Step.png) no-repeat;
+  background-position: 5px -680px;
+}
+.main .five-wrap .quietly-content .prototype-wrapper .play-progress .playing {
+  background-position: 5px -215px;
+  animation: audio_playing 5s linear infinite;
+}
+@keyframes audio_playing {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 .main .five-wrap .quietly-content .quietly-listen-contain {
   width: 360px;
@@ -1280,4 +1164,319 @@
 }
 .main .five-wrap .quietly-content .step-btns .isok {
   display: inline-block !important;
+}
+.main .five-wrap .quietly-content .step-btns .btn-ok {
+  background-color: #27AEC2;
+  display: inline-block;
+}
+.main .five-wrap .quietly-content .step-btns .btn-backplan {
+  background-color: #27AEC2;
+}
+.main .five-wrap .timeline {
+  width: 200px;
+  height: 5px;
+  background-color: #c8c8c8;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-left: -55px;
+  position: relative;
+  z-index: 2;
+}
+.main .five-wrap .timeline span {
+  position: relative;
+  width: 0px;
+  height: 4px;
+  background-color: #27AEC2;
+  border-radius: 5px;
+  display: block;
+  -webkit-transition: width ease-out 0.3s;
+  -o-transition: width ease-out 0.3s;
+  transition: width ease-out 0.3s;
+}
+.main .five-wrap .timeline span:after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #27AEC2;
+}
+.main #fivestep-model {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 10000;
+  display: none;
+}
+.main #fivestep-model .modal-backdrop {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.main #fivestep-model .modal-dialog {
+  position: relative;
+  margin: 30px auto;
+  margin-top: 150px;
+  width: 800px;
+}
+.main #fivestep-model .modal-dialog .modal-content {
+  position: relative;
+  border-radius: 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  background-color: #fff;
+}
+.main #fivestep-model .modal-dialog .modal-content .modal-body {
+  padding: 60px 40px 40px;
+  position: relative;
+  font-size: 16px;
+}
+.main #fivestep-model .modal-dialog .modal-content .modal-body .title-nav {
+  text-align: center;
+}
+.main #fivestep-model .modal-dialog .modal-content .modal-body .title-nav ul {
+  overflow: hidden;
+}
+.main #fivestep-model .modal-dialog .modal-content .modal-body .title-nav ul li {
+  float: left;
+  width: 110px;
+  height: 52px;
+  line-height: 52px;
+  background-color: #fff;
+  border: 1px solid #27AEC2;
+  color: #27AEC2;
+  border-left: none;
+  text-align: center;
+  cursor: pointer;
+}
+.main #fivestep-model .modal-dialog .modal-content .modal-body .title-nav ul li:nth-of-type(1) {
+  width: 126px;
+  border-left: 1px solid #27AEC2;
+}
+.main #fivestep-model .modal-dialog .modal-content .modal-body .title-nav ul li:nth-of-type(2) {
+  width: 128px;
+}
+.main #fivestep-model .modal-dialog .modal-content .modal-body .title-nav ul .on {
+  background-color: #27AEC2;
+  color: #fff;
+}
+.main #fivestep-model .modal-dialog .modal-content .modal-body .details {
+  margin-top: 20px;
+  color: #394c5b;
+}
+.main #fivestep-model .modal-dialog .modal-content .modal-body .details .title {
+  line-height: 30px;
+  height: 30px;
+  text-align: left;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+/*符号 */
+/*符号 */
+/* 第一部分默认 */
+.training-step i {
+  display: inline-block;
+  background: url(../images/Listening5Step.png) no-repeat;
+  background-position: 0 -500px;
+  width: 18px;
+  height: 15px;
+  border: none;
+  vertical-align: middle;
+}
+/* 第二部分默认 */
+.training-already i {
+  display: inline-block;
+  width: 18px;
+  height: 15px;
+  border: none;
+  vertical-align: middle;
+}
+
+/* 连读 */
+.training-step i.tag_lianxu, .training-already i.tag_lianxu{
+  background: url(../images/Listening5Step.png) no-repeat;
+  background-position: 1px -530px;
+  position: absolute;
+  width: 16px;
+  height: 10px;
+  left: 50%;
+  margin-left: -8px;
+  top: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* 叠合 */
+.training-step i.tag_diehe, .training-already i.tag_diehe{
+  background: url(../images/Listening5Step.png) no-repeat;
+  background-position: 1px -530px;
+  position: absolute;
+  width: 16px;
+  height: 10px;
+  left: -8px;
+  top: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+/* 击穿 */
+.training-step i.tag_left, .training-already i.tag_left{
+  transform: rotate(30deg);
+  display: block;
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 16px;
+  background-color: #ffac00;
+  background-position: 1px -530px;
+  left: 4px;
+  top: 3px;
+  z-index: 111;
+}
+
+/* 失爆 */
+.training-step i.tag_right, .training-already i.tag_right{
+  transform: rotate(-30deg);
+  display: block;
+  content: "";
+  position: absolute;
+  width: 3px;
+  height: 16px;
+  background-color: #ffac00;
+  background-position: 1px -530px;
+  left: 4px;
+  top: 3px;
+  z-index: 111;
+}
+/* J */
+.training-step i.tag_j, .training-already i.tag_j{
+  background: url(../images/Listening5Step.png) no-repeat;
+  background-position: 3px -540px;
+  display: inline-block;
+  content: " ";
+  width: 20px;
+  height: 16px;
+  vertical-align: middle;
+}
+/* W */
+.training-step i.tag_w, .training-already i.tag_w {
+  display: inline-block;
+  content: " ";
+  background: url(../images/Listening5Step.png) no-repeat;
+  background-position: 3px -560px;
+  width: 20px;
+  height: 16px;
+  vertical-align: middle;
+}
+.tag_str{
+  font-weight: bold;
+}
+.red {
+  color: #ffac00;
+}
+/* 点击？ 弹出的选项 top和left根据点击的位置来确定 */
+.popoverss {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1060;
+  max-width: 276px;
+  padding: 1px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: left;
+  white-space: normal;
+  background: url("../images/Rectangle1.jpg") no-repeat center;
+  background-size: 228px 168px;
+  display: none;
+  border-top: 1px solid #E2E2E2;
+  /* box-shadow: 0 0 7px 0 rgba(153, 153, 153, 0.8); */
+}
+.popoverss .popover-box {
+  cursor: default;
+  width: 180px;
+  padding: 20px;
+  overflow: hidden;
+  position: relative;
+
+}
+.popoverss .popover-box li {
+  float: left;
+  padding-top: 30px;
+  text-align: center;
+  width: 30px;
+  text-align: center;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  position: relative;
+}
+.popoverss .popover-box li:hover{
+  color: #27AEC2;
+}
+
+.popoverss .popover-box li:nth-of-type(1)::after,.popoverss .popover-box li:nth-of-type(4)::after{
+  content: '';
+  background: url("../images/Listening5Step.png") no-repeat center;
+  background-position: 1px -530px;
+  position: absolute;
+  width: 20px;
+  height: 10px;
+  left: 5px;
+  top: 15px;
+  cursor: default;
+}
+.popoverss .popover-box li:nth-of-type(2)::after{
+  content: '';
+  background: url("../images/Listening5Step.png") no-repeat center;
+  background-position: 1px -580px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 5px;
+  top: 15px;
+  cursor: default;
+}
+.popoverss .popover-box li:nth-of-type(3)::after{
+  content: '';
+  background: url("../images/Listening5Step.png") no-repeat center;
+  background-position: 1px -540px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 5px;
+  top: 15px;
+  cursor: default;
+}
+.popoverss .popover-box li:nth-of-type(5)::after{
+  content: '';
+  background: url("../images/Listening5Step.png") no-repeat center;
+  background-position: 1px -600px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 5px;
+  top: 15px;
+  cursor: default;
+}
+.popoverss .popover-box li:nth-of-type(6)::after{
+  content: '';
+  background: url("../images/Listening5Step.png") no-repeat center;
+  background-position: 1px -560px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 5px;
+  top: 15px;
+  cursor: default;
 }

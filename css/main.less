@@ -48,7 +48,7 @@
                     height: 0;
                     visibility: hidden;
                     display: block;
-                    clear: both
+                    clear: both;
                 }
                 .stepbar{
                     position: absolute;
@@ -127,6 +127,7 @@
                     top: 290px;
                     z-index: 999;
                     line-height: 12px;
+                    
                     .jp_container_1 div{
                         display: inline-block;
                         font-size: 12px;
@@ -143,16 +144,7 @@
                     margin-left: -120px;
                     z-index: 1;
                     background-color: transparent;
-                    .play-shader{
-                        width: 230px;
-                        height: 230px;
-                        left: 5px;
-                        top: 5px;
-                        border-radius: 50%;
-                        background-color: #fff;
-                        z-index: 2;
-                        position: absolute;
-                    }
+                
                     .playinghorn{
                         width: 210px;
                         height: 210px;
@@ -161,9 +153,18 @@
                         z-index: 14;
                         left: 15px;
                         top: 16px;
+                        z-index: 3;
                         cursor: default;
                         background: url(../images/Listening5Step.png) no-repeat;
                         background-position: 5px -680px;
+                    }
+                    .playing{
+                        background-position: 5px -215px;
+                        animation: audio_playing 5s linear infinite;
+                    }
+                    @keyframes audio_playing {
+                        from {transform:rotate(0deg);}
+                        to {transform:rotate(360deg);}
                     }
                 }
             }
@@ -189,6 +190,9 @@
                 }
                 .btn-ok{
                     background-color: #27AEC2;
+                }
+                .is-ok{
+                    
                 }
             }
         }
@@ -622,6 +626,62 @@
             }
             // 第一部分
             .training-tag{
+                .popover{
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    z-index: 1060;
+                    max-width: 276px;
+                    padding: 1px;
+                    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+                    font-size: 14px;
+                    font-weight: normal;
+                    line-height: 1.42857143;
+                    text-align: left;
+                    white-space: normal;
+                    background-color: #fff;
+                    -webkit-background-clip: padding-box;
+                    background-clip: padding-box;
+                    border: 1px solid rgba(0,0,0,.2);
+                    border-radius: 6px;
+                    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+                    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+                    .arrow{
+                        position: absolute;
+                        bottom: -20px;
+                        left: 50%;
+                        margin-left: -11px;
+                        width: 0;
+                        height: 0;
+                        border-top: 10px solid #fff;
+                        border-right: 10px solid rgba(0,0,0,0);
+                        border-bottom: 10px solid rgba(0,0,0,0);
+                        border-left: 10px solid rgba(0,0,0,0);
+                        background-color: rgba(0,0,0,0);
+                    }
+                    .popover-box{
+                        cursor: default;
+                        width: 180px;
+                        height: 150px;
+                        padding: 20px;
+                        overflow: hidden;
+                        box-shadow: 0 0 7px 0 rgba(153,153,153,.8);
+                        position: relative;
+                        li{
+                            width: 33%;
+                            float: left;
+                            padding-top: 30px;
+                            text-align: center;
+                            &:nth-of-type(1):before{
+                                width: 30px;
+                                height: 50px;
+                                // background: url(../images/Listening5Step.png) no-repeat;
+                            }
+
+                            
+                        }
+                    }
+                }
                 .training-step{
                     font-size: 16px;
                     color: #36434d;
@@ -808,6 +868,7 @@
                         padding-bottom: 25px;
                         border-bottom: 1px solid #ccc;
                         padding-left: 25px;
+                        display: none;
                         .training-title {
                             padding: 15px 0 4px 0;
                             font-size: 16px;
@@ -981,7 +1042,7 @@
                         height: 100%;
                         padding-top: 38px;
                         vertical-align: top;
-                        #wordlist{
+                        #wordlist2{
                             width: 509px;
                             overflow-x: hidden;
                             overflow-y: scroll;
@@ -1085,18 +1146,8 @@
                             margin-left: -120px;
                             z-index: 1;
                             background-color: transparent;
-                            .play-shader{
-                                width: 230px;
-                                height: 230px;
-                                left: 5px;
-                                top: 5px;
-                                border-radius: 50%;
-                                background-color: #fff;
-                                z-index: 2;
-                                position: absolute;
-                            }
+                            
                             .playinghorn{
-                                
                                 width: 210px;
                                 height: 210px;
                                 border-radius: 50%;
@@ -1106,12 +1157,20 @@
                                 top: 16px;
                                 cursor: default;
                                 background: url(../images/Listening5Step.png) no-repeat;
+                                background-position: 5px -680px;
+                            }
+                            .playing{
                                 background-position: 5px -215px;
+                                animation: audio_playing 5s linear infinite;
+                            }
+                            @keyframes audio_playing {
+                                from {transform:rotate(0deg);}
+                                to {transform:rotate(360deg);}
                             }
                         }
                     }
                     .grade-middle-step{
-                        padding-top: 25px;
+                        padding-top: 50px;
                         padding-bottom: 5px;
                         p{
                             font-size: 16px;
@@ -1178,18 +1237,8 @@
                             margin-left: -120px;
                             z-index: 1;
                             background-color: transparent;
-                            .play-shader{
-                                width: 230px;
-                                height: 230px;
-                                left: 5px;
-                                top: 5px;
-                                border-radius: 50%;
-                                background-color: #fff;
-                                z-index: 2;
-                                position: absolute;
-                            }
+                            
                             .playinghorn{
-                                
                                 width: 210px;
                                 height: 210px;
                                 border-radius: 50%;
@@ -1198,8 +1247,16 @@
                                 left: 15px;
                                 top: 16px;
                                 cursor: default;
-                                background: url(../images/readyPlay.png) no-repeat;
-                                // background-position: 5px -215px;
+                                background: url(../images/Listening5Step.png) no-repeat;
+                                background-position: 5px -680px;
+                            }
+                            .playing{
+                                background-position: 5px -215px;
+                                animation: audio_playing 5s linear infinite;
+                            }
+                            @keyframes audio_playing {
+                                from {transform:rotate(0deg);}
+                                to {transform:rotate(360deg);}
                             }
                         }
                     }
@@ -1249,18 +1306,8 @@
                     margin-left: -120px;
                     z-index: 1;
                     background-color: transparent;
-                    .play-shader{
-                        width: 230px;
-                        height: 230px;
-                        left: 5px;
-                        top: 5px;
-                        border-radius: 50%;
-                        background-color: #fff;
-                        z-index: 2;
-                        position: absolute;
-                    }
+
                     .playinghorn{
-                        
                         width: 210px;
                         height: 210px;
                         border-radius: 50%;
@@ -1269,9 +1316,18 @@
                         left: 15px;
                         top: 16px;
                         cursor: default;
-                        background: url(../images/readyPlay.png) no-repeat;
-                        //background-position: 5px -215px;
+                        background: url(../images/Listening5Step.png) no-repeat;
+                        background-position: 5px -680px;
                     }
+                    .playing{
+                        background-position: 5px -215px;
+                        animation: audio_playing 5s linear infinite;
+                    }
+                    @keyframes audio_playing {
+                        from {transform:rotate(0deg);}
+                        to {transform:rotate(360deg);}
+                    }
+                   
                 }
 
             }
@@ -1340,6 +1396,123 @@
                 }
                 .isok{
                     display: inline-block !important;
+                }
+                .btn-ok{
+                    background-color: #27AEC2;
+                    display: inline-block;
+                }
+                .btn-backplan{
+                    background-color: #27AEC2;
+                }
+            }
+        }
+        .timeline{
+            width: 200px;
+            height: 5px;
+            background-color: rgb(200, 200, 200);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            margin-left: -55px;
+            position: relative;
+            z-index: 2;
+            span {
+                position: relative;
+                width: 0px;
+                height: 4px;
+                background-color: #27AEC2;
+                border-radius: 5px;
+                display: block;
+                -webkit-transition: width ease-out 0.3s;
+                -o-transition: width ease-out 0.3s;
+                transition: width ease-out 0.3s;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    top: -3px;
+                    right: -5px;
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: #27AEC2;
+                }
+            }
+        }
+    }
+    // 跟读训练说明弹窗
+    #fivestep-model{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 10000;
+        display: none;
+        .modal-backdrop{
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 100%;
+            background-color: rgba(0,0,0,.5);
+        }
+        .modal-dialog{
+            position: relative;
+            margin: 30px auto;
+            margin-top: 150px;
+            width: 800px;       
+            .modal-content{
+                position: relative;
+                border-radius: 0;
+                box-shadow: 0 5px 15px rgba(0,0,0,.5);
+                background-color: #fff;
+                .modal-body{
+                    padding: 60px 40px 40px;
+                    position: relative;
+                    font-size: 16px;
+                    .title-nav{
+                        text-align: center;
+                        ul{
+                            overflow: hidden;
+                            li{
+                                float: left;
+                                width: 110px;
+                                height: 52px;
+                                line-height: 52px;
+                                background-color: #fff;
+                                border: 1px solid #27AEC2;
+                                color: #27AEC2;
+                                border-left: none;
+                                text-align: center;
+                                cursor: pointer;
+                                &:nth-of-type(1){
+                                    width: 126px;
+                                    border-left: 1px solid #27AEC2;
+                                }
+                                &:nth-of-type(2){
+                                    width: 128px;
+                                }
+                            }
+                            .on{
+                                background-color: #27AEC2;
+                                color: #fff;
+                            }
+                        }
+                    }
+                    .details{
+                        margin-top: 20px;
+                        color: #394c5b;
+                        .title{
+                            line-height: 30px;
+                            height: 30px;
+                            text-align: left;
+                            margin-top: 20px;
+                            margin-bottom: 20px;
+                            font-size: 18px;
+                            font-weight: bold;
+                        }
+                    }
                 }
             }
         }
