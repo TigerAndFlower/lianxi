@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/header.css">
+	<link rel="stylesheet" href="css/font.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+<!-- 在线课堂首页 -->
+
+<body>
+	<div>
+		<!-- 头部 -->
+		<div class="header">
+			<div class="wrap">
+				<!-- 左侧的Logo -->
+				<div class="header-logo fl">
+					<img src="../images/logo.png" alt="">
+
+				</div>
+				<!-- 左侧nav -->
+				<ul class="header-nav fl">
+					<li class="fl">
+						<a href="/" class="on">首页</a>
+					</li>
+					<li class="fl" id="course-wrap">
+						<a href="JavaScript:;" class="course-btn ">免费课程</a>
+						<div class="course-nav">
+							<a href="">雅思一对一</a>
+							<a href="">托福一对一</a>
+							<a href="">SAT一对一</a>
+						</div>
+					</li>
+					<li class="fl">
+						<a href="">我的课程</a>
+					</li>
+					<li class="fl">
+						<a href="">我的订单</a>
+					</li>
+					<li class="fl">
+						<a href="">我的账户</a>
+					</li>
+				</ul>
+				<!-- 右边登录注册 -->
+				<div class="header-right fr">
+					<div class="fl">
+						<i class="iconfont">&#xe846;</i>
+						<span>0755-86309669</span>
+					</div>
+					<!-- 用户登录情况 -->
+					<div class="fr login">
+						<a href="http://www.ieduchina.com/login.html?forward={$forward}" class="sign transit">登录</a>
+						<a href="http://www.ieduchina.com/register.html?forward={$forward}" class="btn reg transit header-zhuce">注册</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 内容区 -->
+		<div class="main">
+			<div class="wrap">
+				<h1 class="title">五步精听</h1>
+				<div class="five-wrap">
+					<!-- 上面标题和list -->
+					<div>
+						<div class="caption">
+							<div class="left-box">
+								<p class="caption-title">预听原文</p>
+								<p class="caption-desc">预听原文，整体把握文章难点。</p>
+							</div>
+							<div class="left-box" style="display: none">
+								<p class="caption-title">记录生词</p>
+								<p class="caption-desc">浏览原文，在单词本中记录生僻词汇</p>
+							</div>
+							<div class="left-box" style="display: none">
+								<p class="caption-title">翻译原文</p>
+								<p class="caption-desc">逐句翻译原文。</p>
+							</div>
+							<div class="left-box" style="display: none">
+								<p class="caption-title">跟读原文</p>
+								<p class="caption-desc">Part Ⅰ: 连读标记。标记原文中的连读现象。
+									<a href="javascript:;" id="specification">跟读训练说明</a>
+								</p>
+							</div>
+							<div class="left-box" style="display: none">
+								<p class="caption-title">精听原文</p>
+								<p class="caption-desc">反复精听，不转化汉语语境，直接理解原文的意思</p>
+							</div>
+							<div class="right-box">
+								<ul class="step-list stepbar">
+									<li>预听原文</li>
+									<li>记录生词</li>
+									<li>翻译原文</li>
+									<li>跟读训练</li>
+									<li>精听原文</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!-- 预听全文 -->
+					<div class="content content-step pre-content JsContent" id="pre_listen" style="display: none">
+						<!-- 音频部分 -->
+						<div class="content">
+							<div class="content-tips">
+								<p>录音只能
+									<b>播放一次</b>，开始播放后
+									<b>不能暂停</b>，播放过程中请集中注意力。</p>
+							</div>
+							<audio preload="preload" class="first-audio">
+								<source src="../images/audio1.mp3" type="audio/mp3">
+							</audio>
+							<div class="prototype-wrapper">
+								<div class="jp_container_1-box">
+									<div class="jp_container_1">
+										<p class="pre_timeline timeline">
+											<span></span>
+										</p>
+										<div class="js-pre-current-time">00:00</div>
+										/
+										<div class="js-pre-duration">00:00</div>
+									</div>
+								</div>
+								<!-- A wrapper to emulate use in a webpage and center align -->
+								<div class="play-progress" id="js-first-audio">
+									<div class="playinghorn" id="js-pre-listen"></div>
+								</div>
+							</div>
+							<div class="step-btns">
+								<span class="btn js-listening-btn" id="js-pre-btn" style="margin-top: 50px;">下一步</span>
+							</div>
+						</div>
+					</div>
+					<!-- 记录生词 -->
+					<div class="record-content JsContent" style="display: none" id="record">
+						<!-- 记录生词 -->
+						<div class="new-word-con">
+							<div class="record-left ">
+								<p class="record-title">原文</p>
+								<p class="record-text">
+									<span>Community service is an important component of education here at our university.</span>
+									<span>We encourage all students to volunteer for at least one community activity before they graduate.</span>
+									<span>A new community program called "One On One" helps elementary students who've fallen behind.</span>
+									<span>You education majors might be especially interested in it because it offers the opportunity to do some teaching
+										— that is, tutoring in math and English.</span>
+									<span>You'd have to volunteer two hours a week for one semester. You can choose to help a child with math, English, or
+										both.
+									</span>
+									<span>Half-hour lessons are fine, so you could do a half hour of each subject two days a week.</span>
+									<span>Professor Dodge will act as a mentor to the tutors — he'll be available to help you with lesson plans or to offer
+										suggestions for activities.</span>
+									<span>He has office hours every Tuesday and Thursday afternoon.</span>
+									<span>You can sign up for the program with him and begin the tutoring next week.</span>
+									<span>I'm sure you'll enjoy this community service and you'll gain valuable experience at the same time.</span>
+									<span>It looks good on your resume, too, showing that you've had experience with children and that you care about your
+										community.
+									</span>
+									<span>I'm sure you'll enjoy this community service and you'll gain valuable experience at the same time.</span>
+									<span>It looks good on your resume, too, showing that you've had experience with children and that you care about your
+										community.
+									</span>
+									<span>If you'd like to sign up, or if you have any questions, stop by Professor Dodge's office this week.</span>
+								</p>
+								<div class="clearfix"></div>
+							</div>
+
+							<div class="record-right">
+
+								<div id="wordlist">
+									<div class="listTitle gradient clearfix">
+										<div>单词</div>
+										<div>释义</div>
+										<div class="record-add-btn">
+											<i class="add_oper"></i>添加</div>
+									</div>
+									<div class="wordlistBody emptyList">
+										<!-- 没有内容时默认 -->
+										<div class="noWord">
+											<div style="" class="addIcon"></div>
+											<p>还没添加单词哦！</p>
+										</div>
+										<div class="wordNote">
+											<ul class="wordNoteList">
+												<!-- 第一个用来做添加的模板 默认隐藏 -->
+												<li class="js-word-list" id="new_li" style="display:none">
+													<div class="listElement"></div>
+													<div class="listElement listElement_new"></div>
+													<div class="listElement">
+														<label data-act="editItem" class="editItem">编辑</label>
+														<i class="divide"></i>
+														<label data-act="deleteItem" class="deleteItem">删除</label>
+													</div>
+												</li>
+												<li class="js-word-list">
+													<div class="listElement">aa</div>
+													<div class="listElement listElement_new">dd</div>
+													<div class="listElement">
+														<label data-act="editItem" class="editItem">编辑</label>
+														<i class="divide"></i>
+														<label data-act="deleteItem" class="deleteItem">删除</label>
+													</div>
+												</li>
+
+											</ul>
+										</div>
+
+										<!-- 弹出层 -->
+										<!-- 弹出层根据点击的按钮不同，通过JS把对应的内容添加到弹出层 -->
+										<div class="wrapper_wordlist" style="width: 400px;">
+											<div class="titleBar gradient js-title-lay">
+												<span class="m-act-del"></span>
+												<span class="titleBar-title">添加单词</span>
+											</div>
+											<!-- 添加 -->
+											<div id="add_word" class="js-zsgc hide-element">
+												<div class="dialog">
+													<div class="wordAdding">
+														<p class="modal_label">单词</p>
+														<input type="text" class="wordlistInp add-word">
+													</div>
+													<div>
+														<p class="modal_label">释义</p>
+														<textarea class="wordlistTextarea add-paraphrase"></textarea>
+													</div>
+													<div class="wordlist-oper">
+														<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist add-affirm">
+														<input type="button" value="取消" class="btn close-btn btn-wordlist ">
+													</div>
+												</div>
+											</div>
+											<!-- 修改 -->
+											<div id="edit_word" class="js-zsgc hide-element">
+												<div class="dialog">
+													<div class="wordAdding">
+														<p class="modal_label">单词</p>
+														<input type="text" class="wordlistInp edit-word">
+													</div>
+													<div>
+														<p class="modal_label">释义</p>
+														<textarea class="wordlistTextarea edit-paraphrase"></textarea>
+													</div>
+													<div class="wordlist-oper">
+														<input type="button" value="确定" class="btn btn-wordlist confirm-wordlist edit-affirm">
+														<input type="button" value="取消" class="btn close-btn btn-wordlist">
+													</div>
+												</div>
+											</div>
+											<!-- 删除 -->
+											<div id="delete_word" class="js-zsgc hide-element">
+												<div class="dialog">
+													<p class="delTip">
+														是否确认删除单词？
+													</p>
+													<div class="wordlist-oper">
+														<input type="button" value="确认" id="del-btn" class="btn btn-wordlist confirm-wordlist">
+														<input type="button" value="取消" class="btn close-btn btn-wordlist">
+													</div>
+												</div>
+											</div>
+
+
+										</div>
+										<!-- 遮罩层 -->
+										<div class="worlist_shadow"></div>
+									</div>
+
+								</div>
+								<div class="step-btns record-btn j-next-btn-box">
+									<span class="btn btn-next btn-ok" id="word_next">下一步</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 翻译原文 -->
+					<div class="translation-content content-step JsContent" id="translate" style="display: none;">
+						<!-- 翻译原文   translation-answer默认隐藏，点击查看答案后显示，并且不能返回添加disabled属性-->
+						<div class="translation-content content-step">
+							<div class="translation-tips" style="display: block;">
+								<p>为了更有效地培养大意群反应单元，参考答案按照原文的表达语序给出。</p>
+							</div>
+							<div class="translation-step noAllowed j-trans-step">
+								<p>Community service is an important component of education here at our university.</p>
+								<textarea class="textarea j-trans-textarea"></textarea>
+								<div class="translation-answer">
+									<h2 class="translation-title">参考答案</h2>
+									<p>在我们大学这里，社区服务是教育的一个重要组成部分。</p>
+								</div>
+							</div>
+							<div class="translation-step j-trans-step">
+								<p>We encourage all students to volunteer for at least one community activity before they graduate.</p>
+								<textarea class="textarea j-trans-textarea"></textarea>
+								<div class="translation-answer">
+									<h2 class="translation-title">参考答案</h2>
+									<p>我们鼓励所有的学生在他们毕业前至少参加一次社区志愿活动。</p>
+								</div>
+							</div>
+							<div class="translation-step j-trans-step">
+								<p>A new community program called "One On One" helps elementary students who've fallen behind.</p>
+								<textarea class="textarea j-trans-textarea"></textarea>
+								<div class="translation-answer">
+									<h2 class="translation-title">参考答案</h2>
+									<p>一个新的社区计划，叫做“一对一”，帮助落后的小学生。</p>
+								</div>
+							</div>
+							<div class="translation-step j-trans-step">
+								<p>You education majors might be especially interested in it because it offers the opportunity to do some teaching —
+									that is, tutoring in math and English.</p>
+								<textarea class="textarea j-trans-textarea"></textarea>
+								<div class="translation-answer">
+									<h2 class="translation-title">参考答案</h2>
+									<p>你们教育专业的可能对此尤其感兴趣，因为它提供了教学的机会，也就是说，辅导数学和英语。</p>
+								</div>
+							</div>
+
+							<div class="step-answer" data-step="1">
+								<span class="btn answer" id="translation-btn" style="background-color: #27AEC2">查看答案</span>
+							</div>
+							<div class="step-btns translation-next j-next-btn-box" style="display: none;">
+								<span class="btn btn-next" id="translation-next" style="background-color: #27AEC2">下一步</span>
+							</div>
+						</div>
+					</div>
+
+					<!-- 跟读训练内容 -->
+					<div class="training-content content-step JsContent" id="follow" style="display: none;">
+						<!-- 跟读训练第一步-->
+						<div class="training-content training-tag j-training-step" style="display:none;">
+							<div class="j-popover-tag-container u-popover-tag-container">
+								<div class="popoverss fade top in" role="tooltip" id="popover">
+									<div class="popover-content">
+										<ul class="popover-box">
+											<li name="tag_lianxu">连读</li>
+											<li name="tag_right">失爆</li>
+											<li name="tag_j">j</li>
+											<li name="tag_diehe">叠合</li>
+											<li name="tag_left">击穿</li>
+											<li name="tag_w">w</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="training-tips">
+								<p>点击
+									<strong class="quest-smark"></strong>，选择连读现象。</p>
+							</div>
+							<div class="training-step">
+									<p data-id="1" class="liancu_list">
+										<span class="top ">Community</span>
+											<span class="top">servi
+												<span>ce</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>is</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>a</span>
+											<span>n</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span>i</span>mportan
+												<span class="leftline">t</span>&nbsp;</span>
+											<span class="top">componen
+												<span>t</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>o</span>
+											<span>f</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span>e</span>ducation</span> he
+											<span>re</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>a</span>
+											<span>t</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span>our</span>
+											<span class="top">university</span>
+								</p>
+								<div class="training-answer liandu_daan">
+									<h2 class="training-title">参考答案</h2>
+									<p class="training-already">
+											<span class="top ">Community</span>
+											<span class="top">servi
+												<span class="red">ce</span>
+											</span>
+											<span class="connect link">
+												<i class="tag_left"></i>
+											</span>
+											<span class="red">i</span>
+											<span class="red">s</span>
+											<span class="connect link">
+												<i class="tag_liandu"></i>
+											</span>
+											<span class="red">a</span>
+											<span class="red">n</span>
+											<span class="connect link">
+												<i class="tag_liandu"></i>
+											</span>
+											<span class="top">
+												<span class="red">i</span>mportan
+												<span class="leftline">t</span>&nbsp;</span>
+											<span class="top">componen
+												<span class="red">t</span>
+											</span>
+											<span class="connect link">
+												<i class="tag_j"></i>
+											</span>
+											<span class="red">o</span>
+											<span class="red">f</span>
+											<span class="connect link">
+												<i class="tag_right"></i>
+											</span>
+											<span class="top">
+												<span class="red">e</span>ducation</span> he
+											<span class="red">re</span>
+											<span class="connect link">
+												<i class="tag_right"></i>
+											</span>
+											<span class="red">a</span>
+											<span class="red">t</span>
+											<span class="connect link">
+												<i class="tag_w"></i>
+											</span>
+											<span class="red">our</span>
+											<span class="top">university</span>		
+									</p>
+								</div>
+							</div>
+							<div class="training-step">
+									<p data-id="2" class="liancu_list">
+											<span class="top ">Community</span>
+												<span class="top">servi
+													<span>ce</span>
+												</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>is</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>a</span>
+												<span>n</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span class="top">
+													<span>i</span>mportan
+													<span class="leftline">t</span>&nbsp;</span>
+												<span class="top">componen
+													<span>t</span>
+												</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>o</span>
+												<span>f</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span class="top">
+													<span>e</span>ducation</span> he
+												<span>re</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>a</span>
+												<span>t</span>
+												<span class="connect link">
+													<i></i>
+												</span>
+												<span>our</span>
+												<span class="top">university</span>
+									</p>
+									<div class="training-answer liandu_daan">
+										<h2 class="training-title">参考答案</h2>
+										<p class="training-already">
+												<span class="top ">Community</span>
+												<span class="top">servi
+													<span class="red">ce</span>
+												</span>
+												<span class="connect link">
+													<i class="tag_left"></i>
+												</span>
+												<span class="red">i</span>
+												<span class="red">s</span>
+												<span class="connect link">
+													<i class="tag_liandu"></i>
+												</span>
+												<span class="red">a</span>
+												<span class="red">n</span>
+												<span class="connect link">
+													<i class="tag_liandu"></i>
+												</span>
+												<span class="top">
+													<span class="red">i</span>mportan
+													<span class="leftline">t</span>&nbsp;</span>
+												<span class="top">componen
+													<span class="red">t</span>
+												</span>
+												<span class="connect link">
+													<i class="tag_j"></i>
+												</span>
+												<span class="red">o</span>
+												<span class="red">f</span>
+												<span class="connect link">
+													<i class="tag_right"></i>
+												</span>
+												<span class="top">
+													<span class="red">e</span>ducation</span> he
+												<span class="red">re</span>
+												<span class="connect link">
+													<i class="tag_right"></i>
+												</span>
+												<span class="red">a</span>
+												<span class="red">t</span>
+												<span class="connect link">
+													<i class="tag_w"></i>
+												</span>
+												<span class="red">our</span>
+												<span class="top">university</span>		
+										</p>
+									</div>
+								</div>
+							<div class="step-answer" data-step="2">
+								<span class="btn answer btn-ok " id="liandu-btn">查看答案</span>
+							</div>
+							<div class="step-btns-tag training-next j-training-btn-box" style="display: none;">
+								<span class="btn btn-next-tag btn-ok" id="liandu_next">下一步</span>
+							</div>
+						</div>
+						<!-- 跟读训练第二步-->
+						<div class="training-content j-training-step training-stress" style="display: none;">
+							<div class="training-tips">
+								<p>点击词汇，标记重读。词组重读时，可以顺序点击相关单词进行标记。</p>
+							</div>
+							<div class="training-step">
+								<p class="js-zhongdutimu" data-num="0" data-questid="9301_1">
+									<span class="top tag_str">Community</span>
+									<span class="top">service</span>
+									<span class="top">is</span>
+									<span class="top">an</span>
+									<span class="top">important</span>
+									<span class="top">component</span>
+									<span class="top">of</span>
+									<span class="top">education</span>
+									<span class="top">here</span>
+									<span class="top">at</span>
+									<span class="top">our</span>
+									<span class="top">university</span>.</p>
+								<div class="training-answer js-zhongdudaan">
+									<h2 class="training-title">参考答案</h2>
+									<p class="training-already">
+										<span class="top repetition">Community</span>
+										<span class="top">servi
+											<span class="red">ce</span>
+										</span>
+										<span class="connect"> </span>
+										<span class="red">i</span>
+										<span class="red">s</span>
+										<span class="connect"> </span>
+										<span class="red">a</span>
+										<span class="red">n</span>
+										<span class="connect"> </span>
+										<span class="top">
+											<span class="red">i</span>mportan
+											<span class="leftline">t</span>&nbsp;</span>
+										<span class="top">componen
+											<span class="red">t</span>
+										</span>
+										<span class="connect"> </span>
+										<span class="red">o</span>
+										<span class="red">f</span>
+										<span class="connect"> </span>
+										<span class="top">
+											<span class="red">e</span>ducation</span> he
+										<span class="red">re</span>
+										<span class="connect"> </span>
+										<span class="red">a</span>
+										<span class="red">t</span>
+										<span class="connect"> </span>
+										<span class="red">our</span>
+										<span class="top">university</span>.</p>
+								</div>
+							</div>
+							<div class="training-step">
+								<p class="js-zhongdutimu" data-num="1" data-questid="9301_2">
+									<span class="top">We</span>
+									<span class="top">encourage</span>
+									<span class="top">all</span>
+									<span class="top">students</span>
+									<span class="top">to</span>
+									<span class="top">volunteer</span>
+									<span class="top">for</span>
+									<span class="top">at</span>
+									<span class="top">least</span>
+									<span class="top">one</span>
+									<span class="top">community</span>
+									<span class="top">activity</span>
+									<span class="top">before</span>
+									<span class="top">they</span>
+									<span class="top">graduate</span>.
+								</p>
+								<div class="training-answer js-zhongdudaan">
+									<h2 class="training-title">参考答案</h2>
+									<p class="training-already">We
+										<span class="tag"></span>
+										<span class="top">encoura
+											<span class="red">ge</span>
+										</span>
+										<span class="connect"> </span>
+										<span class="top">
+											<span class="red">a</span>ll</span>
+										<span class="top">students</span> to
+										<span class="top">volunteer</span> fo
+										<span class="red">r</span>
+										<span class="connect"> </span>
+										<span class="red">a</span>
+										<span class="leftline">t</span>&nbsp;
+										<span class="top">leas
+											<span class="leftline">t</span>&nbsp;</span>
+										<span class="top">one</span>
+										<span class="top">community</span>
+										<span class="tag"></span>
+										<span class="top">activity</span> before they
+										<span class="top">gradua
+											<span class="leftline">te</span>&nbsp;</span>.</p>
+								</div>
+							</div>
+							<div class="step-answer" data-step="3">
+								<span class="btn answer btn-ok" id="zhongdu_chakan">查看答案</span>
+							</div>
+							<div class="step-btns training-next j-training-btn-box" style="display:none;">
+								<span class="btn btn-next btn-ok" id="zhongdu-next">下一步</span>
+							</div>
+						</div>
+						<!-- 跟读训练第三步-->
+						<div class="grade-content j-training-step" style="display: none;">
+							<div class="grade-list">
+								<ul>
+									<li class="grade-select">初级跟读</li>
+									<li>中级跟读</li>
+									<li>高级跟读</li>
+								</ul>
+								<div class="clearfix"></div>
+							</div>
+							<div class="grade-tips" style="display: block;">
+								<p>对照原文及其连读、重读标记，分句进行跟读练习。练习
+									<b>不限次数</b>。</p>
+							</div>
+							<div class="grade-tips">
+								<p>对照原文，通篇进行跟读练习。练习
+									<b>不限次数</b>。</p>
+							</div>
+							<div class="grade-tips">
+								<p>脱稿跟读练习，练习
+									<b>不限次数</b>。</p>
+							</div>
+							<!-- 初级 -->
+							<div class="grade-box grade-box-step" style="display: none;">
+								<div class="grade-left">
+									<div class="grade-step">
+										<i class="voice-step">
+											<audio preload="preload" src="images/audio1.mp3"></audio>
+										</i>
+										<p class="training-already">
+											连续：kkk <span class="red">d<i class='tag_lianxu'></i>d</span>kk <br/>	
+
+												失爆：bbb <span><i class='tag_right'></i></span>bbb <br/>
+												J:CCCCCC<span><i class='tag_j'></i></span>bbb <br/>
+												  
+												叠合:DDDDDD <span><i class='tag_diehe'></i></span>bbb <br/>
+												击穿:EEEEEEEE <span><i class='tag_left'></i></span>bbb <br/>
+												W:EEEEEEEE <span><i class='tag_w'></i></span>bbb <br/>
+									</div>
+									<div class="grade-step">
+										<i class="voice-step">
+											<audio preload="preload" src="images/audio1.mp3"></audio>
+										</i>
+										<p class="training-already">
+											<span class="top">Half-hour</span>
+											<span class="top">lesson
+												<span class="red">s</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="red">a</span>re
+											<span class="top">fine</span>, so you
+											<span class="top">coul
+												<span class="red">d</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span class="red">d</span>o</span>
+											<span class="tag tag-w"></span> a
+											<span class="top">hal
+												<span class="red">f</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span class="red">hou</span>
+												<span class="red">r</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="red">o</span>
+											<span class="red">f</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span class="red">ea</span>ch</span>
+											<span class="top">subjec
+												<span class="red">t</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span class="red">t</span>wo</span>
+											<span class="top">day
+												<span class="red">s</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="red">a</span>
+											<span class="top">wee
+												<span class="leftline">k</span>&nbsp;</span>.</p>
+									</div>
+									<div class="grade-step">
+										<i class="voice-step">
+											<audio preload="preload" src="images/audio1.mp3"></audio>
+										</i>
+										<p class="training-already">
+											<span class="top">Professor</span>
+											<span class="top">Dodge</span> wi
+											<span class="red">ll</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span class="red">a</span>c
+												<span class="red">t</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="red">a</span>
+											<span class="red">s</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="red">a</span>
+											<span class="top">mentor</span> to the
+											<span class="top">tutors</span> — he'll be
+											<span class="tag tag-j"></span>
+											<span class="top">available</span> to
+											<span class="top">hel
+												<span class="red">p</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="red">y</span>ou with
+											<span class="top">lesson</span>
+											<span class="top">plan
+												<span class="red">s</span>
+											</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="red">o</span>r to
+											<span class="tag tag-w"></span>
+											<span class="top">offer</span>
+											<span class="top">suggestions</span> fo
+											<span class="red">r</span>
+											<span class="connect link">
+												<i></i>
+											</span>
+											<span class="top">
+												<span class="red">a</span>ctivities</span>.</p>
+									</div>
+
+								</div>
+								<div class="grade-right">
+									<div id="wordlist2">
+										<div class="listTitle gradient clearfix">
+											<div>单词</div>
+											<div>释义</div>
+											<!-- <div data-act="add">
+													<i class="add_oper"></i>添加</div> -->
+										</div>
+										<div class="wordlistBody fullList">
+											<div class="noWord">
+												<div class="addIcon"></div>
+												<p>还没添加单词哦！</p>
+											</div>
+											<!-- 选到的列表，继承记录生词 -->
+											<div class="wordNote">
+												<ul class="wordNoteList">
+													<li>
+														<div class="contentCollapse  listElement" title="">导读顶顶顶顶多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多</div>
+														<div class="listElement listElement_new"></div>
+
+													</li>
+													<li>
+														<div class="listElement">sdfsd</div>
+														<div class="listElement listElement_new">fsdfsd</div>
+
+													</li>
+													<li>
+														<div class="listElement"></div>
+														<div class="listElement listElement_new"></div>
+
+													</li>
+													<li>
+														<div class="listElement">大萨达所</div>
+														<div class="listElement listElement_new"></div>
+
+													</li>
+													<li>
+														<div class="contentCollapse  listElement" title="">das是是是是是是所所所所所所所所所所所所所</div>
+														<div class="contentCollapse listElement listElement_new" title="">阿诗丹顿多多多多多多多多多多多多多多多多多多多多</div>
+
+													</li>
+													<li>
+														<div class="listElement">啊实打实</div>
+														<div class="listElement listElement_new">阿斯达大所大是</div>
+
+													</li>
+												</ul>
+
+											</div>
+
+										</div>
+
+									</div>
+								</div>
+								<div class="step-btns u-btn-box j-grade-btn-box">
+									<span class="btn grade-btn-next btn-ok" id="grade-btn">下一步</span>
+								</div>
+							</div>
+							<!--中级-->
+							<div class="grade-middle-box grade-box-step" style="display: none;">
+								<audio preload="preload" class="grade_middle_audio">
+									<source src="../images/audio1.mp3" type="audio/mp3">
+								</audio>
+								<div class="prototype-wrapper">
+									<div class="jp_container_1-box">
+										<div class="jp_container_1">
+											<p class="timeline grade_middle_timeline">
+												<span></span>
+											</p>
+											<div class="jp-current-time-new js-middle-duration">00:00</div>
+											/
+											<div class="jp-duration-new js-middle-current-time">00:00</div>
+										</div>
+									</div>
+									<!-- 听力图标 -->
+									<div class="play-progress">
+										<div class="playinghorn" id="grade_middle_btn"></div>
+									</div>
+								</div>
+								<div class="grade-middle-step">
+									<p>
+										<span>Community service is an important component of education here at our university.</span>
+										<span>We encourage all students to volunteer for at least one community activity before they graduate.</span>
+										<span>A new community program called "One On One" helps elementary students who've fallen behind.
+										</span>
+										<span>You education majors might be especially interested in it because it offers the opportunity to do some teaching
+											— that is, tutoring in math and English.</span>
+										<span>You'd have to volunteer two hours a week for one semester. You can choose to help a child with math, English, or
+											both.
+										</span>
+										<span>Half-hour lessons are fine, so you could do a half hour of each subject two days a week.</span>
+										<span>Professor Dodge will act as a mentor to the tutors — he'll be available to help you with lesson plans or to offer
+											suggestions for activities.</span>
+										<span>He has office hours every Tuesday and Thursday afternoon.</span>
+										<span>You can sign up for the program with him and begin the tutoring next week.</span>
+										<span>I'm sure you'll enjoy this community service and you'll gain valuable experience at the same time.</span>
+										<span>It looks good on your resume, too, showing that you've had experience with children and that you care about your
+											community.
+										</span>
+										<span>If you'd like to sign up, or if you have any questions, stop by Professor Dodge's office this week.</span>
+									</p>
+								</div>
+								<div class="step-btns u-btn-box j-grade-btn-box">
+									<span class="btn grade-btn-next btn-ok grade_middle_next">下一步</span>
+								</div>
+							</div>
+							<!--高级-->
+							<div class="grade-high-box grade-box-step" style="display: none;">
+								<audio preload="preload" class="grade_high_audio">
+									<source src="../images/audio1.mp3" type="audio/mp3">
+								</audio>
+								<div class="prototype-wrapper">
+									<div class="jp_container_1-box">
+										<div class="jp_container_1">
+											<p class="timeline grade_high_timeline">
+												<span></span>
+											</p>
+											<div class="jp-current-time-new js-high-duration">00:00</div>
+											/
+											<div class="jp-duration-new js-high-current-time">00:00</div>
+										</div>
+									</div>
+									<!-- A wrapper to emulate use in a webpage and center align -->
+									<div class="play-progress">
+										<div class="playinghorn" id="grade_high_btn"></div>
+									</div>
+								</div>
+								<div class="step-btns u-btn-box j-next-btn-box">
+									<span class="btn btn-ok" id="grade_high_next">下一步</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- 精听原文 -->
+					<div class="quietly-content content-step JsContent" id="micro_listen" style="display: none;">
+						<div class="quietly-high-box">
+							<div class="content-tips">
+
+								<p class="pattern1">精听
+									<b>20</b> 次以上可以点击
+									<b>完成</b>，精听次数没有上限。每一次播放过程中
+									<b>不能暂停</b>。</p>
+							</div>
+							<audio preload="preload" class="micro_audio">
+								<source src="../images/audio1.mp3" type="audio/mp3">
+							</audio>
+							<div class="prototype-wrapper">
+								<div class="jp_container_1-box quietly-jp_container_1-box">
+									<div class="jp_container_1">
+										<p class="timeline micro_timeline">
+											<span></span>
+										</p>
+										<div class="jp-current-time-new js-micro-duration">00:00</div>
+										/
+										<div class="jp-duration-new js-micro-current-time">00:00</div>
+									</div>
+								</div>
+								<!-- A wrapper to emulate use in a webpage and center align -->
+								<div class="play-progress">
+									<div class="playinghorn" id="micro_btn"></div>
+								</div>
+							</div>
+							<div class="quietly-listen-contain">
+								<div>
+									<span class="micro-degree">0</span>
+								</div>
+								<p>精听次数</p>
+							</div>
+						</div>
+						<!-- 开始灰色 20次以后蓝色  -->
+						<div class="step-btns step-btns-finished pattern1">
+							<span class="btn disabled" id="micro-wancheng">完成</span>
+							<a href="javascript:;" class="btn btn-backplan" style="display: none;">返回学习计划</a>
+						</div>
+
+					</div>
+				</div>
+				<!-- 点击跟读训练说明的弹窗 -->
+				<div id="fivestep-model" class="modal fade in">
+					<div class="modal-backdrop"></div>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="fivestep-model-close" data-dismiss="modal"></div>
+								<div class="title-nav">
+									<ul>
+										<li class="on" data-value="fuyin">辅音对元音连读</li>
+										<li class="" data-value="yuanyin">元音对元音连读</li>
+										<li class="" data-value="diehe">叠合</li>
+										<li class="" data-value="shibao">失爆</li>
+										<li class="" data-value="jichuang">击穿</li>
+										<li class="" data-value="stress">重读</li>
+									</ul>
+								</div>
+								<div class="details">
+									<div class="item fuyin" style="display: block;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>当前面的单词以辅音结尾，紧随其后的单词以元音开头，这时将前面的辅音同后面的元音连在一起，像是构成一个音节一样的读出来, 以使语言更具有流畅自然的特点.而且连读必须是发生在短语或句子的同一个意群中的, 在意群(及短语或从句)之间有停顿时,两个短语或两个从句间相邻的音不连读。</p>
+											<p>
+											</p>
+										</div>
+									</div>
+									<div class="item yuanyin" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p class="condition">元音对元音的连读实际上是在元音之间插入半元音[j]或[w], 从而使纯元音音节之间的过渡变得自然、流畅，读起来更加上口。半元音插入的情况如下：</p>
+											<p>
+											</p>
+											<p class="p1">前面的单词以元音[i:],[ei],[ai],[oi]或[i]结尾，紧随其后的单词以元音开头，这时，在两个单词之间出现半元音[j]作为过渡。</p>
+											<p class="p2">前面的单词以[u:][o]或[au]结尾，紧随其后的单词以元音开头，这时，在两个单词之间出现半元音[w]作为过渡。</p>
+										</div>
+
+									</div>
+									<div class="item diehe" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>即前面单词结尾辅音与紧随其后的单词的起始辅音为同一个音时，只需读一次，而不必将这个音读两次。这种情形常发生在[b], [p], [t], [k], [d], [g] 等辅音出现的时候。</p>
+										</div>
+
+									</div>
+									<div class="item shibao" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>顾名思义,指爆破音失去爆破。发生的条件如下：当前面的单词以[p][b][t][d][k][g]这六个爆破音中的任何一个结尾，而紧随其后的单词是以辅音开头的，这时前面单词中的爆破音失去爆破。读法是在发爆破音时只阻塞气流却不将之释放，说白了就是只作口型不发音。</p>
+										</div>
+
+									</div>
+									<div class="item jichuang" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>指声门摩擦音[h]出现在单词词首时，由于该单词不重读导致声门摩擦音[h]不发音的现象。</p>
+											<p class="condition">击穿发生的条件：</p>
+											<p class="p1">该单词是以[h]开头的，hour这个单词中字母h原本就不发音，所以这种情况不叫击穿。</p>
+											<p class="p2">该单词不出现在句首。</p>
+											<p class="p3">该单词在句子中不重读。</p>
+											<p class="zhu">注：</p>
+											<p class="p1">them这个单词在句子中会有缩读的情况，表现为省略了th的发音，如：leave them读作leave’em。这种情况不属于击穿。</p>
+											<p class="p2">并非前面的单词必须是辅音结尾才能击穿后面单词的[h]，前面单词结尾的元音如果是符合元音对元音连读规则中的元音，则在省去[h]的同时，在[h]音后面的元音前面按规则加半元音 [j] 或者 [w]，如：I have never
+												done this before这句话中，除了能使用I’ve 这种缩读之外，还可以读作I j’ave never done this before，再如：to him可以读作to w’im。</p>
+										</div>
+
+									</div>
+									<div class="item stress" style="display: none;">
+										<div class="explain">
+											<p class="title">说明：</p>
+											<p>在一个句子中，需重读的单词一般是实词，如名词、动词、形容词、副词、数词、代词等；虚词一般不重读，如冠词、连词、介词等。句子的重读可以增强句子的节奏感和韵律感，突出重点。句子的重读有时会因说话人的讲话情景不同而发生变化，有一定主观性；还需根据音频中重音的落点确认。</p>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<span class="modal-close venus_iconfont icon-close" data-act="close"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 底部 -->
+		<div class="footer">
+			<div class="wrap">
+				<div>
+					<span>友情链接</span>
+					<a href="http://ieduchina.com/" target="_blank">国际教育网</a>
+					<a href="https://www.chinaielts.org/" target="_blank">雅思报名入口</a>
+					<a href="https://toefl.etest.net.cn/" target="_blank">托福报名入口</a>
+				</div>
+				<div>
+					<span>联系我们</span>
+					<a href="javascript:;">400-000-5656</a>
+					<a href="javascript:;">福田校区：广东省深圳市福田区深南大道3018号世纪汇2501F</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="tabList" data-id="1">
+	<script src="js/jquery.min.js"></script>
+	<script src="js/tinli.js"></script>
+	<script src="js/tab.js"></script>
+</body>
+
+</html>
